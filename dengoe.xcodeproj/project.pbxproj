@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07BED0DD19F5F1DC00BB7759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DC19F5F1DC00BB7759 /* main.m */; };
+		07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DF19F5F1DC00BB7759 /* AppDelegate.m */; };
+		07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0E219F5F1DC00BB7759 /* FirstViewController.m */; };
+		07BED0E619F5F1DC00BB7759 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0E519F5F1DC00BB7759 /* SecondViewController.m */; };
+		07BED0E919F5F1DC00BB7759 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0E719F5F1DC00BB7759 /* Main.storyboard */; };
+		07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0EA19F5F1DC00BB7759 /* Images.xcassets */; };
+		07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0EC19F5F1DC00BB7759 /* LaunchScreen.xib */; };
+		07BED0FA19F5F1DD00BB7759 /* dengoeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0F919F5F1DD00BB7759 /* dengoeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		07BED0F419F5F1DD00BB7759 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07BED0CF19F5F1DC00BB7759 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07BED0D619F5F1DC00BB7759;
+			remoteInfo = dengoe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07BED0D719F5F1DC00BB7759 /* dengoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dengoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BED0DB19F5F1DC00BB7759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07BED0DC19F5F1DC00BB7759 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		07BED0DE19F5F1DC00BB7759 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		07BED0DF19F5F1DC00BB7759 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		07BED0E119F5F1DC00BB7759 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		07BED0E219F5F1DC00BB7759 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		07BED0E419F5F1DC00BB7759 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		07BED0E519F5F1DC00BB7759 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		07BED0E819F5F1DC00BB7759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		07BED0EA19F5F1DC00BB7759 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		07BED0ED19F5F1DC00BB7759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		07BED0F319F5F1DD00BB7759 /* dengoeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dengoeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BED0F819F5F1DD00BB7759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07BED0F919F5F1DD00BB7759 /* dengoeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dengoeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07BED0D419F5F1DC00BB7759 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BED0F019F5F1DD00BB7759 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07BED0CE19F5F1DC00BB7759 = {
+			isa = PBXGroup;
+			children = (
+				07BED0D919F5F1DC00BB7759 /* dengoe */,
+				07BED0F619F5F1DD00BB7759 /* dengoeTests */,
+				07BED0D819F5F1DC00BB7759 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		07BED0D819F5F1DC00BB7759 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07BED0D719F5F1DC00BB7759 /* dengoe.app */,
+				07BED0F319F5F1DD00BB7759 /* dengoeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07BED0D919F5F1DC00BB7759 /* dengoe */ = {
+			isa = PBXGroup;
+			children = (
+				07BED0DE19F5F1DC00BB7759 /* AppDelegate.h */,
+				07BED0DF19F5F1DC00BB7759 /* AppDelegate.m */,
+				07BED0E119F5F1DC00BB7759 /* FirstViewController.h */,
+				07BED0E219F5F1DC00BB7759 /* FirstViewController.m */,
+				07BED0E419F5F1DC00BB7759 /* SecondViewController.h */,
+				07BED0E519F5F1DC00BB7759 /* SecondViewController.m */,
+				07BED0E719F5F1DC00BB7759 /* Main.storyboard */,
+				07BED0EA19F5F1DC00BB7759 /* Images.xcassets */,
+				07BED0EC19F5F1DC00BB7759 /* LaunchScreen.xib */,
+				07BED0DA19F5F1DC00BB7759 /* Supporting Files */,
+			);
+			path = dengoe;
+			sourceTree = "<group>";
+		};
+		07BED0DA19F5F1DC00BB7759 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07BED0DB19F5F1DC00BB7759 /* Info.plist */,
+				07BED0DC19F5F1DC00BB7759 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		07BED0F619F5F1DD00BB7759 /* dengoeTests */ = {
+			isa = PBXGroup;
+			children = (
+				07BED0F919F5F1DD00BB7759 /* dengoeTests.m */,
+				07BED0F719F5F1DD00BB7759 /* Supporting Files */,
+			);
+			path = dengoeTests;
+			sourceTree = "<group>";
+		};
+		07BED0F719F5F1DD00BB7759 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07BED0F819F5F1DD00BB7759 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07BED0D619F5F1DC00BB7759 /* dengoe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07BED0FD19F5F1DD00BB7759 /* Build configuration list for PBXNativeTarget "dengoe" */;
+			buildPhases = (
+				07BED0D319F5F1DC00BB7759 /* Sources */,
+				07BED0D419F5F1DC00BB7759 /* Frameworks */,
+				07BED0D519F5F1DC00BB7759 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dengoe;
+			productName = dengoe;
+			productReference = 07BED0D719F5F1DC00BB7759 /* dengoe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		07BED0F219F5F1DD00BB7759 /* dengoeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07BED10019F5F1DD00BB7759 /* Build configuration list for PBXNativeTarget "dengoeTests" */;
+			buildPhases = (
+				07BED0EF19F5F1DD00BB7759 /* Sources */,
+				07BED0F019F5F1DD00BB7759 /* Frameworks */,
+				07BED0F119F5F1DD00BB7759 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07BED0F519F5F1DD00BB7759 /* PBXTargetDependency */,
+			);
+			name = dengoeTests;
+			productName = dengoeTests;
+			productReference = 07BED0F319F5F1DD00BB7759 /* dengoeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07BED0CF19F5F1DC00BB7759 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "ビザンコムマック０４";
+				TargetAttributes = {
+					07BED0D619F5F1DC00BB7759 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					07BED0F219F5F1DD00BB7759 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 07BED0D619F5F1DC00BB7759;
+					};
+				};
+			};
+			buildConfigurationList = 07BED0D219F5F1DC00BB7759 /* Build configuration list for PBXProject "dengoe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07BED0CE19F5F1DC00BB7759;
+			productRefGroup = 07BED0D819F5F1DC00BB7759 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07BED0D619F5F1DC00BB7759 /* dengoe */,
+				07BED0F219F5F1DD00BB7759 /* dengoeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07BED0D519F5F1DC00BB7759 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BED0E919F5F1DC00BB7759 /* Main.storyboard in Resources */,
+				07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */,
+				07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BED0F119F5F1DD00BB7759 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07BED0D319F5F1DC00BB7759 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BED0E619F5F1DC00BB7759 /* SecondViewController.m in Sources */,
+				07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */,
+				07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */,
+				07BED0DD19F5F1DC00BB7759 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BED0EF19F5F1DD00BB7759 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BED0FA19F5F1DD00BB7759 /* dengoeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07BED0F519F5F1DD00BB7759 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07BED0D619F5F1DC00BB7759 /* dengoe */;
+			targetProxy = 07BED0F419F5F1DD00BB7759 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		07BED0E719F5F1DC00BB7759 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BED0E819F5F1DC00BB7759 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		07BED0EC19F5F1DC00BB7759 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BED0ED19F5F1DC00BB7759 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07BED0FB19F5F1DD00BB7759 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		07BED0FC19F5F1DD00BB7759 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		07BED0FE19F5F1DD00BB7759 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = dengoe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07BED0FF19F5F1DD00BB7759 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = dengoe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		07BED10119F5F1DD00BB7759 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = dengoeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dengoe.app/dengoe";
+			};
+			name = Debug;
+		};
+		07BED10219F5F1DD00BB7759 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = dengoeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dengoe.app/dengoe";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07BED0D219F5F1DC00BB7759 /* Build configuration list for PBXProject "dengoe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BED0FB19F5F1DD00BB7759 /* Debug */,
+				07BED0FC19F5F1DD00BB7759 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07BED0FD19F5F1DD00BB7759 /* Build configuration list for PBXNativeTarget "dengoe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BED0FE19F5F1DD00BB7759 /* Debug */,
+				07BED0FF19F5F1DD00BB7759 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		07BED10019F5F1DD00BB7759 /* Build configuration list for PBXNativeTarget "dengoeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BED10119F5F1DD00BB7759 /* Debug */,
+				07BED10219F5F1DD00BB7759 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07BED0CF19F5F1DC00BB7759 /* Project object */;
+}

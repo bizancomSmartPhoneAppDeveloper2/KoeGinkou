@@ -9,6 +9,8 @@
 #import "FirstViewController.h"
 #import "createPin.h"
 
+
+
 @interface FirstViewController ()
 
 @end
@@ -74,6 +76,7 @@
     salonNumber = 0;
 
     [self didTouroku];
+    
 }
 
 - (void)didReceiveMemoryWarning {

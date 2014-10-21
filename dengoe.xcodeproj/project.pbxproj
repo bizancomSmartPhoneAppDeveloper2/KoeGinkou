@@ -26,6 +26,11 @@
 		07ECD38419F6052B00EF8EBB /* Mike.png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38319F6052B00EF8EBB /* Mike.png */; };
 		07ECD38619F6094900EF8EBB /* saisei.png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38519F6094900EF8EBB /* saisei.png */; };
 		07ECD38819F632A700EF8EBB /* denngonn .png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38719F632A700EF8EBB /* denngonn .png */; };
+		07ECD38C19F6704100EF8EBB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD38B19F6704100EF8EBB /* SystemConfiguration.framework */; };
+		07ECD38E19F6704F00EF8EBB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD38D19F6704F00EF8EBB /* MobileCoreServices.framework */; };
+		07ECD39419F673B600EF8EBB /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39019F673B600EF8EBB /* CHANGELOG.md */; };
+		07ECD39519F673B600EF8EBB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39219F673B600EF8EBB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		07ECD39619F673B600EF8EBB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39319F673B600EF8EBB /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +71,13 @@
 		07ECD38319F6052B00EF8EBB /* Mike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mike.png; sourceTree = "<group>"; };
 		07ECD38519F6094900EF8EBB /* saisei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saisei.png; sourceTree = "<group>"; };
 		07ECD38719F632A700EF8EBB /* denngonn .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denngonn .png"; sourceTree = "<group>"; };
+		07ECD38919F6701600EF8EBB /* NCMB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NCMB.framework; path = ../../../Downloads/NCMB.framework; sourceTree = "<group>"; };
+		07ECD38B19F6704100EF8EBB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		07ECD38D19F6704F00EF8EBB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		07ECD39019F673B600EF8EBB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		07ECD39119F673B600EF8EBB /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		07ECD39219F673B600EF8EBB /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		07ECD39319F673B600EF8EBB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07ECD38E19F6704F00EF8EBB /* MobileCoreServices.framework in Frameworks */,
+				07ECD38C19F6704100EF8EBB /* SystemConfiguration.framework in Frameworks */,
 				07ECD37D19F5F82900EF8EBB /* MapKit.framework in Frameworks */,
 				07ECD37B19F5F80800EF8EBB /* Foundation.framework in Frameworks */,
 				07ECD37919F5F7E900EF8EBB /* CoreGraphics.framework in Frameworks */,
@@ -95,6 +109,10 @@
 		07BED0CE19F5F1DC00BB7759 = {
 			isa = PBXGroup;
 			children = (
+				07ECD38F19F673B600EF8EBB /* JSONKit-master */,
+				07ECD38D19F6704F00EF8EBB /* MobileCoreServices.framework */,
+				07ECD38B19F6704100EF8EBB /* SystemConfiguration.framework */,
+				07ECD38919F6701600EF8EBB /* NCMB.framework */,
 				07ECD37C19F5F82900EF8EBB /* MapKit.framework */,
 				07ECD37A19F5F80800EF8EBB /* Foundation.framework */,
 				07ECD37819F5F7E900EF8EBB /* CoreGraphics.framework */,
@@ -163,6 +181,17 @@
 				07BED0F819F5F1DD00BB7759 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		07ECD38F19F673B600EF8EBB /* JSONKit-master */ = {
+			isa = PBXGroup;
+			children = (
+				07ECD39019F673B600EF8EBB /* CHANGELOG.md */,
+				07ECD39119F673B600EF8EBB /* JSONKit.h */,
+				07ECD39219F673B600EF8EBB /* JSONKit.m */,
+				07ECD39319F673B600EF8EBB /* README.md */,
+			);
+			path = "JSONKit-master";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +299,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BED0E619F5F1DC00BB7759 /* SecondViewController.m in Sources */,
+				07ECD39419F673B600EF8EBB /* CHANGELOG.md in Sources */,
 				07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */,
 				07ECD38019F5F92B00EF8EBB /* createPin.m in Sources */,
 				07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */,
+				07ECD39519F673B600EF8EBB /* JSONKit.m in Sources */,
+				07ECD39619F673B600EF8EBB /* README.md in Sources */,
 				07BED0DD19F5F1DC00BB7759 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +427,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/bizan04/Downloads,
+				);
 				INFOPLIST_FILE = dengoe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -405,6 +441,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/bizan04/Downloads,
+				);
 				INFOPLIST_FILE = dengoe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

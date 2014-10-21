@@ -15,6 +15,17 @@
 		07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0EA19F5F1DC00BB7759 /* Images.xcassets */; };
 		07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0EC19F5F1DC00BB7759 /* LaunchScreen.xib */; };
 		07BED0FA19F5F1DD00BB7759 /* dengoeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0F919F5F1DD00BB7759 /* dengoeTests.m */; };
+		07ECD37319F5F35D00EF8EBB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37219F5F35D00EF8EBB /* AudioToolbox.framework */; };
+		07ECD37519F5F43500EF8EBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37419F5F43500EF8EBB /* AVFoundation.framework */; };
+		07ECD37719F5F7B700EF8EBB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37619F5F7B700EF8EBB /* CoreLocation.framework */; };
+		07ECD37919F5F7E900EF8EBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37819F5F7E900EF8EBB /* CoreGraphics.framework */; };
+		07ECD37B19F5F80800EF8EBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37A19F5F80800EF8EBB /* Foundation.framework */; };
+		07ECD37D19F5F82900EF8EBB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37C19F5F82900EF8EBB /* MapKit.framework */; };
+		07ECD38019F5F92B00EF8EBB /* createPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD37F19F5F92B00EF8EBB /* createPin.m */; };
+		07ECD38219F5FE6700EF8EBB /* close_pink.gif in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38119F5FE6700EF8EBB /* close_pink.gif */; };
+		07ECD38419F6052B00EF8EBB /* Mike.png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38319F6052B00EF8EBB /* Mike.png */; };
+		07ECD38619F6094900EF8EBB /* saisei.png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38519F6094900EF8EBB /* saisei.png */; };
+		07ECD38819F632A700EF8EBB /* denngonn .png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD38719F632A700EF8EBB /* denngonn .png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +54,18 @@
 		07BED0F319F5F1DD00BB7759 /* dengoeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dengoeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BED0F819F5F1DD00BB7759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BED0F919F5F1DD00BB7759 /* dengoeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dengoeTests.m; sourceTree = "<group>"; };
+		07ECD37219F5F35D00EF8EBB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		07ECD37419F5F43500EF8EBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		07ECD37619F5F7B700EF8EBB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		07ECD37819F5F7E900EF8EBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		07ECD37A19F5F80800EF8EBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		07ECD37C19F5F82900EF8EBB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		07ECD37E19F5F92B00EF8EBB /* createPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createPin.h; sourceTree = "<group>"; };
+		07ECD37F19F5F92B00EF8EBB /* createPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createPin.m; sourceTree = "<group>"; };
+		07ECD38119F5FE6700EF8EBB /* close_pink.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = close_pink.gif; sourceTree = "<group>"; };
+		07ECD38319F6052B00EF8EBB /* Mike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mike.png; sourceTree = "<group>"; };
+		07ECD38519F6094900EF8EBB /* saisei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saisei.png; sourceTree = "<group>"; };
+		07ECD38719F632A700EF8EBB /* denngonn .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denngonn .png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +73,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07ECD37D19F5F82900EF8EBB /* MapKit.framework in Frameworks */,
+				07ECD37B19F5F80800EF8EBB /* Foundation.framework in Frameworks */,
+				07ECD37919F5F7E900EF8EBB /* CoreGraphics.framework in Frameworks */,
+				07ECD37719F5F7B700EF8EBB /* CoreLocation.framework in Frameworks */,
+				07ECD37519F5F43500EF8EBB /* AVFoundation.framework in Frameworks */,
+				07ECD37319F5F35D00EF8EBB /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +95,12 @@
 		07BED0CE19F5F1DC00BB7759 = {
 			isa = PBXGroup;
 			children = (
+				07ECD37C19F5F82900EF8EBB /* MapKit.framework */,
+				07ECD37A19F5F80800EF8EBB /* Foundation.framework */,
+				07ECD37819F5F7E900EF8EBB /* CoreGraphics.framework */,
+				07ECD37619F5F7B700EF8EBB /* CoreLocation.framework */,
+				07ECD37419F5F43500EF8EBB /* AVFoundation.framework */,
+				07ECD37219F5F35D00EF8EBB /* AudioToolbox.framework */,
 				07BED0D919F5F1DC00BB7759 /* dengoe */,
 				07BED0F619F5F1DD00BB7759 /* dengoeTests */,
 				07BED0D819F5F1DC00BB7759 /* Products */,
@@ -88,6 +123,8 @@
 				07BED0DF19F5F1DC00BB7759 /* AppDelegate.m */,
 				07BED0E119F5F1DC00BB7759 /* FirstViewController.h */,
 				07BED0E219F5F1DC00BB7759 /* FirstViewController.m */,
+				07ECD37E19F5F92B00EF8EBB /* createPin.h */,
+				07ECD37F19F5F92B00EF8EBB /* createPin.m */,
 				07BED0E419F5F1DC00BB7759 /* SecondViewController.h */,
 				07BED0E519F5F1DC00BB7759 /* SecondViewController.m */,
 				07BED0E719F5F1DC00BB7759 /* Main.storyboard */,
@@ -101,6 +138,10 @@
 		07BED0DA19F5F1DC00BB7759 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07ECD38719F632A700EF8EBB /* denngonn .png */,
+				07ECD38519F6094900EF8EBB /* saisei.png */,
+				07ECD38319F6052B00EF8EBB /* Mike.png */,
+				07ECD38119F5FE6700EF8EBB /* close_pink.gif */,
 				07BED0DB19F5F1DC00BB7759 /* Info.plist */,
 				07BED0DC19F5F1DC00BB7759 /* main.m */,
 			);
@@ -205,6 +246,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BED0E919F5F1DC00BB7759 /* Main.storyboard in Resources */,
+				07ECD38619F6094900EF8EBB /* saisei.png in Resources */,
+				07ECD38219F5FE6700EF8EBB /* close_pink.gif in Resources */,
+				07ECD38819F632A700EF8EBB /* denngonn .png in Resources */,
+				07ECD38419F6052B00EF8EBB /* Mike.png in Resources */,
 				07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */,
 				07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */,
 			);
@@ -226,6 +271,7 @@
 			files = (
 				07BED0E619F5F1DC00BB7759 /* SecondViewController.m in Sources */,
 				07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */,
+				07ECD38019F5F92B00EF8EBB /* createPin.m in Sources */,
 				07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */,
 				07BED0DD19F5F1DC00BB7759 /* main.m in Sources */,
 			);
@@ -418,6 +464,7 @@
 				07BED0FF19F5F1DD00BB7759 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07BED10019F5F1DD00BB7759 /* Build configuration list for PBXNativeTarget "dengoeTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +473,7 @@
 				07BED10219F5F1DD00BB7759 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -176,7 +176,7 @@
     [subview addSubview:addresslabel];
     
     
-    UIButton *subview_ListenButton = [[UIButton alloc] initWithFrame:CGRectMake(160, 10, 30, 30)];
+    UIButton *subview_ListenButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 20, 40, 40)];
     //subviewClose.backgroundColor = [UIColor blueColor];
     UIImage *img = [UIImage imageNamed:@"saisei.png"];  // ボタンにする画像を生成する
     [subview_ListenButton setBackgroundImage:img forState:UIControlStateNormal];  // 画像をセットする
@@ -192,11 +192,13 @@
     //NSLog(@"annotationView coordinate is %f", view.annotation.coordinate.latitude); NSLog(@"annotationView coordinate is %f", view.annotation.coordinate.longitude);
     //NSLog(@"annotationView title is %@", view.annotation.title); // アノテーションバルーンのtitle
     //NSLog(@" annotationView subtitle is %@", view.annotation.subtitle); // アノテーションバルーンのsubtitle
+    
+    
     //デリゲートに保存したuserNameを取得する
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
     //userNameを表示
     NSLog(@"入力された文字は%@",appDelegate.userName_send);
-    namelabel.text = (@"%@",appDelegate.userName_send);
+    namelabel.text = [NSString stringWithFormat:@"%@\n%@",(appDelegate.userName_send),(appDelegate.date_send)];
     //addresslabel.text = (@"%@",view.annotation.subtitle);
     //NSLog(@"オープン時間:%@",pin.open);
     //NSLog(@"閉店時間%@",pin.close);
@@ -311,12 +313,14 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
     //userNameを表示
     NSLog(@"入力された文字は%@",appDelegate.userName_send);
+    NSLog(@"%@",appDelegate.date_send);
 
     
     
     //ラベル追加
     namelabel = [[UILabel alloc] init];
-    namelabel.frame = CGRectMake(20, 10, 140, 30);
+    namelabel.frame = CGRectMake(20, 10, 200, 60);
+    namelabel.numberOfLines = 2;
     namelabel.backgroundColor = [UIColor whiteColor];
     namelabel.textColor = [UIColor blackColor];
     namelabel.font = [UIFont fontWithName:@"AppleGothic" size:16];

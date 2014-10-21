@@ -115,6 +115,13 @@
     //userNameを他クラスから参照するので、appに保存する
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
     appDelegate.userName_send = self.userName; // デリゲートプロパティに値代入
+    [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+    NSDate *date = [NSDate date];
+    self.dateString = [formatter stringFromDate:date];
+    NSLog(@"%@",self.dateString);
+    appDelegate.date_send = self.dateString;
     return NO;
     
     

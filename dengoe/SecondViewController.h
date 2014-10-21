@@ -25,5 +25,6 @@
 - (IBAction)userName:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 @property NSString *userName;
+@property NSString *dateString;
 @end
 

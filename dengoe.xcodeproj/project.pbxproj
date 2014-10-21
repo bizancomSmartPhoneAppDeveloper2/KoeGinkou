@@ -31,6 +31,7 @@
 		07ECD39419F673B600EF8EBB /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39019F673B600EF8EBB /* CHANGELOG.md */; };
 		07ECD39519F673B600EF8EBB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39219F673B600EF8EBB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		07ECD39619F673B600EF8EBB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39319F673B600EF8EBB /* README.md */; };
+		07ECD39719F6772500EF8EBB /* NCMB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD38919F6701600EF8EBB /* NCMB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07ECD39719F6772500EF8EBB /* NCMB.framework in Frameworks */,
 				07ECD38E19F6704F00EF8EBB /* MobileCoreServices.framework in Frameworks */,
 				07ECD38C19F6704100EF8EBB /* SystemConfiguration.framework in Frameworks */,
 				07ECD37D19F5F82900EF8EBB /* MapKit.framework in Frameworks */,

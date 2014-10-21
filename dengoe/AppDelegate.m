@@ -20,6 +20,30 @@
     // Override point for customization after application launch.
     
     return YES;
+    [NCMB setApplicationKey:@"e6ba1db5b7c8e52c7cfbf7ba245702ef8ff3fdcba6c6654ce82479d4196048b1" clientKey:@"7285a92deb165ca053373a80f277895e3a44fdd862a283e7a5aaa30d7a667dd9"];
+    
+    NCMBQuery *query = [NCMBQuery queryWithClassName:@"TestClass"];
+    [query whereKey:@"message" equalTo:@"test"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            if ([objects count] > 0) {
+                NSLog(@"[FIND] %@", [[objects objectAtIndex:0] objectForKey:@"message"]);
+            } else {
+                NSError *saveError = nil;
+                NCMBObject *obj = [NCMBObject objectWithClassName:@"TestClass"];
+                [obj setObject:@"Hello, NCMB!" forKey:@"message"];
+                [obj save:&saveError];
+                if (saveError == nil) {
+                    NSLog(@"[SAVE] Done");
+                } else {
+                    NSLog(@"[SAVE-ERROR] %@", saveError);
+                }
+            }
+        } else {
+            NSLog(@"[ERROR] %@", error);
+        }
+    }];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

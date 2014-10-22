@@ -26,7 +26,6 @@
     NSMutableArray *namelabelArray;
     NSMutableArray *subviewArray;
     NSMutableArray *buttonArray;
-    //緯度と経度情報を格納する変数の初期化(今回は鳴門市文化会館に設定)
     CLLocationCoordinate2D co;
     double dbLat;
     double dbLng;
@@ -57,48 +56,7 @@
 @synthesize locationManager;
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSString *areaName = @"新宿駅";
-    
-    //geoPointの生成
-    double latitude0 = 35.690921;
-    double longitude0 = 139.700258;
-    NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude0 longitude:longitude0];
-    
-    //geoPointの保存
-    NCMBObject *obj = [NCMBObject objectWithClassName:@"Places"];
-    [obj setObject:geoPoint forKey:@"point"];
-    [obj setObject:areaName forKey:@"areaName"];
-    [obj saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
-        if (!error) {
-            //成功後の処理
-        }
-        else {
-            //エラー処理
-        }
-    }];
-    
-    NSString *areaName1 = @"高田馬場駅";
-    
-    //geoPointの生成
-    NCMBGeoPoint *geoPoint1 = [NCMBGeoPoint geoPoint];
-    geoPoint1.latitude = 35.712285;
-    geoPoint1.longitude = 139.703782;
-    
-    //geoPointの保存
-    NCMBObject *obj1 = [NCMBObject objectWithClassName:@"Places"];
-    [obj1 setObject:geoPoint1 forKey:@"point"];
-    [obj1 setObject:areaName1 forKey:@"areaName"];
-    [obj1 saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
-        if (!error) {
-            //成功後の処理
-        }
-        else {
-            //エラー処理
-        }
-    }];
-    
-    //[self QuerySearch];
-}
+    }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -134,27 +92,31 @@
 
 
 
--(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    NSString *pin = @"pin";
-    //pinで示すリサイクル可能なアノテーションビューかnilが返ってくる
-    MKPinAnnotationView *pinView = (MKPinAnnotationView*)[self.map dequeueReusableAnnotationViewWithIdentifier:pin];
-    if (pinView == nil) {
-        //anotetionとpinを用いて値を代入
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
-        //表示する画像を設定
-        //pinView.image = [UIImage imageNamed:@"hitsuji.png"];
-        //ピンをクリックしたときに情報を表示するようにする
-        pinView.canShowCallout = YES;
-        pinView.animatesDrop = YES;
+-(MKAnnotationView*)mapView:(MKMapView*)_mapView viewForAnnotation:(id )annotation {
+    // 現在地表示なら nil を返す
+    if (annotation == self.map.userLocation) {
+        return nil;
     }
-    return pinView;
     
+    MKAnnotationView *annotationView;
+    NSString* identifier = @"Pin";
+    annotationView = (MKAnnotationView*)[self.map dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if(nil == annotationView) {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+    }
+    annotationView.image = [UIImage imageNamed:@"hitsuji.png"];
+    annotationView.canShowCallout = YES;
+    
+    
+    annotationView.annotation = annotation;
+    
+    return annotationView;
 }
 
 - (void)mapView:(MKMapView*)mapView didAddAnnotationViews:(NSArray*)views{
     // アノテーションビューを取得する
     salonNumber = 0;
-    for (MKAnnotationView* annotationView in views) {
+    for (MKAnnotationView *annotationView in views) {
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         // コールアウトの左側のアクセサリビューにボタンを追加する
@@ -166,6 +128,7 @@
         //NSLog(@"ボタン配列の要素が%ld個",buttonArray.count);
     }
 }
+
 //アノテーションのコールアウトに追加したボタンがタップされるとこのメソッドが呼ばれる
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
@@ -292,6 +255,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     longitude = location.coordinate.longitude;
     [self.locationManager stopUpdatingLocation];
     [self defaultMapSettei];
+    [self didTouroku];
+
 }
 
 -(void)defaultMapSettei{
@@ -325,8 +290,23 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 -(void)createPin{
     // 徳島駅
     createPin *tokushimaEki = [[createPin alloc] init];
-    tokushimaEki.coordinate = CLLocationCoordinate2DMake(35.655333, 139.748611);
+    tokushimaEki.coordinate = CLLocationCoordinate2DMake(34.074642, 134.550764);
     tokushimaEki.title = @"徳島駅の伝言板";
+    
+    //東京タワー
+    createPin *tt = [[createPin alloc] init];
+    tt.coordinate = CLLocationCoordinate2DMake(35.655333, 139.748611);
+    tt.title = @"Tokyo Tower";
+    
+    // Tokyo Skytree
+    createPin *st = [[createPin alloc] init];
+    st.coordinate = CLLocationCoordinate2DMake(35.710139, 139.810833);
+    st.title = @"Tokyo Skytree";
+    
+    [self.map addAnnotations:@[tokushimaEki,tt,st]];
+    
+    
+
 }
 
 -(void)didTouroku{
@@ -340,13 +320,6 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     genzaithi.title = (@"１件の声登録があります");
     //hotpepper.subtitle = (@"%@",address);
     [self.map addAnnotations:@[genzaithi]];
-    
-    //デリゲートに保存したuserNameを取得する
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
-    //userNameを表示
-    NSLog(@"入力された文字は%@",appDelegate.userName_send);
-    NSLog(@"%@",appDelegate.date_send);
-
     
     
     //ラベル追加
@@ -414,4 +387,48 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     }];
 }
 
+-(void)createObjectAPI{
+    NSString *areaName = @"新宿駅";
+    
+    //geoPointの生成
+    double latitude0 = 35.690921;
+    double longitude0 = 139.700258;
+    NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude0 longitude:longitude0];
+    
+    //geoPointの保存
+    NCMBObject *obj = [NCMBObject objectWithClassName:@"Places"];
+    [obj setObject:geoPoint forKey:@"point"];
+    [obj setObject:areaName forKey:@"areaName"];
+    [obj saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
+        if (!error) {
+            //成功後の処理
+        }
+        else {
+            //エラー処理
+        }
+    }];
+    
+    NSString *areaName1 = @"高田馬場駅";
+    
+    //geoPointの生成
+    NCMBGeoPoint *geoPoint1 = [NCMBGeoPoint geoPoint];
+    geoPoint1.latitude = 35.712285;
+    geoPoint1.longitude = 139.703782;
+    
+    //geoPointの保存
+    NCMBObject *obj1 = [NCMBObject objectWithClassName:@"Places"];
+    [obj1 setObject:geoPoint1 forKey:@"point"];
+    [obj1 setObject:areaName1 forKey:@"areaName"];
+    [obj1 saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
+        if (!error) {
+            //成功後の処理
+        }
+        else {
+            //エラー処理
+        }
+    }];
+    
+    //[self QuerySearch];
+
+}
 @end

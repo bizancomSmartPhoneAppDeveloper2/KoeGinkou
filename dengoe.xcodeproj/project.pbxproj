@@ -32,6 +32,7 @@
 		07ECD39D19F69DD500EF8EBB /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39919F69DD500EF8EBB /* CHANGELOG.md */; };
 		07ECD39E19F69DD500EF8EBB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39B19F69DD500EF8EBB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		07ECD39F19F69DD500EF8EBB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 07ECD39C19F69DD500EF8EBB /* README.md */; };
+		07ECD3A119F7566700EF8EBB /* hitsuji.png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD3A019F7566700EF8EBB /* hitsuji.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		07ECD39A19F69DD500EF8EBB /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		07ECD39B19F69DD500EF8EBB /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		07ECD39C19F69DD500EF8EBB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		07ECD3A019F7566700EF8EBB /* hitsuji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hitsuji.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		07BED0DA19F5F1DC00BB7759 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07ECD3A019F7566700EF8EBB /* hitsuji.png */,
 				07ECD38719F632A700EF8EBB /* denngonn .png */,
 				07ECD38519F6094900EF8EBB /* saisei.png */,
 				07ECD38319F6052B00EF8EBB /* Mike.png */,
@@ -282,6 +285,7 @@
 				07ECD38819F632A700EF8EBB /* denngonn .png in Resources */,
 				07ECD38419F6052B00EF8EBB /* Mike.png in Resources */,
 				07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */,
+				07ECD3A119F7566700EF8EBB /* hitsuji.png in Resources */,
 				07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

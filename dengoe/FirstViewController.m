@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "createPin.h"
+#import <NCMB/NCMB.h>
 
 
 
@@ -53,12 +54,57 @@
 
 }
 
+@synthesize locationManager;
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSString *areaName = @"新宿駅";
+    
+    //geoPointの生成
+    double latitude0 = 35.690921;
+    double longitude0 = 139.700258;
+    NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude0 longitude:longitude0];
+    
+    //geoPointの保存
+    NCMBObject *obj = [NCMBObject objectWithClassName:@"Places"];
+    [obj setObject:geoPoint forKey:@"point"];
+    [obj setObject:areaName forKey:@"areaName"];
+    [obj saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
+        if (!error) {
+            //成功後の処理
+        }
+        else {
+            //エラー処理
+        }
+    }];
+    
+    NSString *areaName1 = @"高田馬場駅";
+    
+    //geoPointの生成
+    NCMBGeoPoint *geoPoint1 = [NCMBGeoPoint geoPoint];
+    geoPoint1.latitude = 35.712285;
+    geoPoint1.longitude = 139.703782;
+    
+    //geoPointの保存
+    NCMBObject *obj1 = [NCMBObject objectWithClassName:@"Places"];
+    [obj1 setObject:geoPoint1 forKey:@"point"];
+    [obj1 setObject:areaName1 forKey:@"areaName"];
+    [obj1 saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
+        if (!error) {
+            //成功後の処理
+        }
+        else {
+            //エラー処理
+        }
+    }];
+    
+    //[self QuerySearch];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
     [self locationManagerMethod];
-    [self defaultMapSettei];
     [self createPin];
     SecondViewController *rokuonView = self.parentViewController;
     rokuonView.delegate =self;
@@ -75,7 +121,9 @@
     dbLng = 0;
     salonNumber = 0;
 
-    [self didTouroku];
+    //[self didTouroku];
+    //[self getObject];
+    [self defaultMapSettei];
     
 }
 
@@ -84,44 +132,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//現在地を取得
-//現在地の緯度と経度を取得
-// 位置情報が取得成功した場合にコールされる
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    // 位置情報更新
-    longitude = newLocation.coordinate.longitude;
-    latitude = newLocation.coordinate.latitude;
-    
-    // 表示更新
-    //NSLog(@"%f",longitude);
-    //NSLog(@"%f",latitude);
-}
-
-// 位置情報が取得失敗した場合にコールされる。
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    if (error) {
-        NSString* message = nil;
-        switch ([error code]) {
-                // アプリでの位置情報サービスが許可されていない場合
-            case kCLErrorDenied:
-                // 位置情報取得停止
-                [self.locationManager stopUpdatingLocation];
-                message = [NSString stringWithFormat:@"このアプリは位置情報サービスが許可されていません。"];
-                break;
-            default:
-                message = [NSString stringWithFormat:@"位置情報の取得に失敗しました。"];
-                break;
-        }
-        if (message) {
-            // アラートを表示
-            UIAlertView* alert=[[UIAlertView alloc] initWithTitle:@""      message:message
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-            [alert show];
-        }
-    }
-}
 
 
 -(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
@@ -235,33 +245,65 @@
 }
 
 -(void)locationManagerMethod{
-    // ロケーションマネージャーを作成
-    BOOL locationServicesEnabled;
-    self.locationManager = [[CLLocationManager alloc] init];
-    if ([CLLocationManager respondsToSelector:@selector(locationServicesEnabled)]) {
-        // iOS4.0以降はクラスメソッドを使用
-        locationServicesEnabled = [CLLocationManager locationServicesEnabled];
-    } else {
-        // iOS4.0以前はプロパティを使用
-        locationServicesEnabled = self.locationManager.locationServicesEnabled;
-    }
     
-    if (locationServicesEnabled) {
-        self.locationManager.delegate = self;
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        // iOS バージョンが 8 以上で、requestAlwaysAuthorization メソッドが
+        // 利用できる場合
         
-        // 位置情報取得開始
+        // 位置情報測位の許可を求めるメッセージを表示する
+        [self.locationManager requestAlwaysAuthorization];
+        //      [self.locationManager requestWhenInUseAuthorization];
+    } else {
+        // iOS バージョンが 8 未満で、requestAlwaysAuthorization メソッドが
+        // 利用できない場合
+        
+        // 測位を開始する
         [self.locationManager startUpdatingLocation];
     }
+}
+
+//現在地を取得
+//現在地の緯度と経度を取得
+- (void)locationManager:(CLLocationManager *)manager
+didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
+    if (status == kCLAuthorizationStatusAuthorizedAlways ||
+        status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        // 位置情報測位の許可状態が「常に許可」または「使用中のみ」の場合、
+        // 測位を開始する（iOS バージョンが 8 以上の場合のみ該当する）
+        // ※iOS8 以上の場合、位置情報測位が許可されていない状態で
+        // 　startUpdatingLocation メソッドを呼び出しても、何も行われない。
+        [self.locationManager startUpdatingLocation];
+        
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
     
+    CLLocation *location = [locations lastObject];
+    NSLog(@"現在地経度%f 現在地緯度%f",
+          location.coordinate.latitude,
+          location.coordinate.longitude);
+    latitude = location.coordinate.latitude;
+    longitude = location.coordinate.longitude;
+    [self.locationManager stopUpdatingLocation];
+    [self defaultMapSettei];
 }
 
 -(void)defaultMapSettei{
     //デリゲートを自分自身に設定
     self.map.delegate = self;
-    
-    latitude = 34.074642;
-    longitude = 134.550764;
+    //latitude = nowLocation.coordinate.latitude;
+    //longitude = nowLocation.coordinate.longitude;
+    NSLog(@"中心経度%f 中心緯度%f",latitude,longitude);
+    //latitude = 34.074642;
+    //longitude = 134.550764;
+    //latitude = 35.710000;
+    //longitude = 139.810000;
     //地図の真ん中の位置を緯度と経度で設定
     //co.latitude = 34.071369;
     //co.longitude = 134.556196;
@@ -270,35 +312,21 @@
     
     
     //地図の縮尺を設定、coを中心に1000m四方で設定
-    self.map.region = MKCoordinateRegionMakeWithDistance(co, 2000, 2000);
+    self.map.region = MKCoordinateRegionMakeWithDistance(co, 1000, 1000);
     //区画内の建物表示プロパティ、初期値NO
     [self.map setShowsBuildings:YES];
     //コンビニなどランドマークの表示プロパティ、初期値NO
     [self.map setShowsPointsOfInterest:YES];
     //ユーザの現在地表示プロパティ（表示のされ方は純正マップアプリを参照）初期値NO
-    //[self.map setShowsUserLocation:YES];
+    [self.map setShowsUserLocation:YES];
     
 }
 
 -(void)createPin{
-
     // 徳島駅
     createPin *tokushimaEki = [[createPin alloc] init];
     tokushimaEki.coordinate = CLLocationCoordinate2DMake(35.655333, 139.748611);
     tokushimaEki.title = @"徳島駅の伝言板";
-    
-    
-    // Tokyo Skytree
-    createPin *st = [[createPin alloc] init];
-    st.coordinate = CLLocationCoordinate2DMake(35.710139, 139.810833);
-    st.title = @"Tokyo Skytree";
-    
-    
-    
-    //mapにanotetionを追加
-    //[self.map addAnnotation:pin];
-    //[self.map addAnnotations:@[tt, st]];
-    
 }
 
 -(void)didTouroku{
@@ -308,6 +336,7 @@
     //現在地にピンを立てて
     createPin *genzaithi = [[createPin alloc] init];
     genzaithi.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    NSLog(@"%f,%fにピンを立てました",latitude,longitude);
     genzaithi.title = (@"１件の声登録があります");
     //hotpepper.subtitle = (@"%@",address);
     [self.map addAnnotations:@[genzaithi]];
@@ -341,4 +370,48 @@
 
     //現在地ピンのアノケーションビューに録音再生ボタンと録音タイトルを表示
 }
+
+-(void)QuerySearch{
+    //検索開始地点に新宿駅の座標を設定
+    double latitude1 = 35.690921;
+    double longitude1 = 139.700258;
+    NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude1 longitude:longitude1];
+    
+    //設定した座標から5キロメートル内を検索
+    NCMBQuery *geoQuery = [NCMBQuery queryWithClassName:@"Places"];
+    [geoQuery whereKey:@"point" nearGeoPoint:geoPoint withinKilometers:5.0];
+    [geoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error){
+        if (!error) {
+            //成功後の処理
+            //NSLog(@"%@",geoQuery);
+        }
+        else{
+            //エラー処理
+            NSLog(@"error");
+        }
+    }];
+    
+}
+
+-(void)getObject{
+    NCMBQuery *query = [NCMBQuery queryWithClassName:@"Places"];
+    [query whereKey:@"areaName" equalTo:@"新宿駅"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objs, NSError *error) {
+        for (NCMBObject *obj in objs) {
+            //NSLog(@"%@", obj);
+            
+            // objectForKeyアクセス
+            NSString *point = [obj objectForKey:@"point"];
+            //NSLog(@"point:%@", point)
+            NSString *areaName = [obj objectForKey:@"areaName"];
+            // プロパティアクセス
+            NSString *objectId = obj.objectId;
+            //NSString *areaName = Places.areaName;
+            NSLog(@"areaName:%@,objectId:%@,point:%@",areaName, objectId, point);
+            // 再取得
+            [obj refresh];
+        }
+    }];
+}
+
 @end

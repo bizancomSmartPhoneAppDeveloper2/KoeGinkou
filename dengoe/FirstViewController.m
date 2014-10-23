@@ -44,6 +44,7 @@
     NSInteger buttontag;
     AVAudioSession *audioSession;
     AVAudioPlayer *avPlayer;
+    MKCircle *circle;
 }
 
 @synthesize locationManager;
@@ -68,8 +69,8 @@
     salonNumber = 0;
 
     // 500mの範囲円を追加
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:co radius: 500.0];
-    [self.map addOverlay:circle];
+    circle = [MKCircle circleWithCenterCoordinate:co radius: 500.0];
+    //[self.map addOverlay:circle];
     //[self getObject];
     //[self defaultMapSettei];
     CLLocationDistance radiusOnMeter = 100.0;
@@ -448,11 +449,14 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     NSLog(@"ジオフェンス領域%@に入りました",region.identifier);
+    [self.map addOverlay:circle];
     
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     NSLog(@"ジオフェンス領域%@から出ました",region.identifier);
+    [self.map removeOverlay:circle];
+    
 }
 @end

@@ -7,13 +7,10 @@
 //
 
 #import "FirstViewController.h"
-#import "createPin.h"
+#import "CustomAnnotation.h"
 #import <NCMB/NCMB.h>
 
-
-
 @interface FirstViewController ()
-
 @end
 
 @implementation FirstViewController{
@@ -32,11 +29,9 @@
     NSString *nsstringlat;
     NSString *nsstringlng;
     NSDictionary *salondic;
-    
     NSString *urlstr;
     NSURL *url;
     NSURLRequest *request;
-    
     NSData *data;
     NSDictionary *dic;
     NSDictionary *resultdic;
@@ -47,27 +42,20 @@
     NSString *name;
     NSInteger salonNumber;
     NSInteger buttontag;
-    
     AVAudioSession *audioSession;
     AVAudioPlayer *avPlayer;
-
 }
 
 @synthesize locationManager;
 
--(void)viewWillAppear:(BOOL)animated{
-    }
-
 - (void)viewDidLoad {
+    [self newAnnotation];
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    [self.map setDelegate: self];
     [self locationManagerMethod];
-    [self createPin];
     SecondViewController *rokuonView = self.parentViewController;
     rokuonView.delegate =self;
-    
-    
     
     //配列を空で生成
     nameArray  = [NSMutableArray array];
@@ -79,10 +67,8 @@
     dbLng = 0;
     salonNumber = 0;
 
-    //[self didTouroku];
     //[self getObject];
-    [self defaultMapSettei];
-    
+    //[self defaultMapSettei];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,27 +76,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
--(MKAnnotationView*)mapView:(MKMapView*)_mapView viewForAnnotation:(id )annotation {
-    // 現在地表示なら nil を返す
-    if (annotation == self.map.userLocation) {
+//アノテーションを追加してアノテーション(ピン)が表示されるときに呼ばれるメソッド
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    //現在地の情報でないか
+    if (annotation != self.map.userLocation) {
+        NSString *pin = @"pin";
+        //pinで示すリサイクル可能なアノテーションビューかnilが返ってくる
+        MKAnnotationView *av = (MKAnnotationView*)[self.map dequeueReusableAnnotationViewWithIdentifier:pin];
+        if (av == nil) {
+            //anotetionとpinを用いて値を代入
+            av = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
+            //表示する画像を設定
+            av.image = [UIImage imageNamed:@"hitsuji.png"];
+            //ピンをクリックしたときに情報を表示するようにする
+            av.canShowCallout = YES;
+        }
+        return av;
+    }else{
         return nil;
     }
-    
-    MKAnnotationView *annotationView;
-    NSString* identifier = @"Pin";
-    annotationView = (MKAnnotationView*)[self.map dequeueReusableAnnotationViewWithIdentifier:identifier];
-    if(nil == annotationView) {
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-    }
-    annotationView.image = [UIImage imageNamed:@"hitsuji.png"];
-    annotationView.canShowCallout = YES;
-    
-    
-    annotationView.annotation = annotation;
-    
-    return annotationView;
 }
 
 - (void)mapView:(MKMapView*)mapView didAddAnnotationViews:(NSArray*)views{
@@ -132,13 +116,15 @@
 //アノテーションのコールアウトに追加したボタンがタップされるとこのメソッドが呼ばれる
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    //createPin型で生成(そうしないとopenやcloseなどが参照できないから)
-    createPin *pin = view.annotation;
+    //CustomAnnotation型で生成(そうしないとopenやcloseなどが参照できないから)
+    CustomAnnotation *pin = view.annotation;
     // 表示view生成
     subview = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 400)];
     subview.backgroundColor = [UIColor whiteColor];
-    
     [self.view addSubview:subview];
+    //UIImage *denngonn_image = [UIImage imageNamed:@"denngonn.png"];
+    //UIImageView *imageview = [[UIImageView alloc]initWithImage:denngonn_image];
+    //[subview addSubview:imageview];
     
     // 表示viewの、クローズボタンを生成
     UIButton *subviewClose = [[UIButton alloc] initWithFrame:CGRectMake(265, 10, 50, 25)];
@@ -147,11 +133,10 @@
     [subviewClose setBackgroundImage:img_close forState:UIControlStateNormal];  // 画像をセットする
     [subviewClose addTarget:self action:@selector(subViewClose:) forControlEvents:UIControlEventTouchUpInside];
     [subview addSubview:subviewClose];
-    
     [subview addSubview:namelabel];
     [subview addSubview:addresslabel];
     
-    
+    //現在地ピンのアノケーションビューに録音再生ボタンと録音タイトルを生成
     UIButton *subview_ListenButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 20, 40, 40)];
     //subviewClose.backgroundColor = [UIColor blueColor];
     UIImage *img = [UIImage imageNamed:@"saisei.png"];  // ボタンにする画像を生成する
@@ -169,7 +154,24 @@
     //NSLog(@"annotationView title is %@", view.annotation.title); // アノテーションバルーンのtitle
     //NSLog(@" annotationView subtitle is %@", view.annotation.subtitle); // アノテーションバルーンのsubtitle
     
+    //ラベル追加
+    namelabel = [[UILabel alloc] init];
+    namelabel.frame = CGRectMake(20, 10, 200, 60);
+    namelabel.numberOfLines = 2;
+    namelabel.backgroundColor = [UIColor whiteColor];
+    namelabel.textColor = [UIColor blackColor];
+    namelabel.font = [UIFont fontWithName:@"AppleGothic" size:16];
+    //NSLog(@"ラベルは%@",nameArray[i]);
+    [namelabelArray addObject:namelabel];
+    //NSLog(@"ラベル配列の要素は%ld個",namelabelArray.count);
     
+    //ラベル追加
+    //addresslabel = [[UILabel alloc] init];
+    //addresslabel.frame = CGRectMake(10, 35, 260, 30);
+    //addresslabel.backgroundColor = [UIColor whiteColor];
+    //addresslabel.textColor = [UIColor blackColor];
+    //addresslabel.font = [UIFont fontWithName:@"AppleGothic" size:13];
+
     //デリゲートに保存したuserNameを取得する
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
     //userNameを表示
@@ -262,13 +264,13 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 -(void)defaultMapSettei{
     //デリゲートを自分自身に設定
     self.map.delegate = self;
-    //latitude = nowLocation.coordinate.latitude;
-    //longitude = nowLocation.coordinate.longitude;
     NSLog(@"中心経度%f 中心緯度%f",latitude,longitude);
     //latitude = 34.074642;
     //longitude = 134.550764;
     //latitude = 35.710000;
     //longitude = 139.810000;
+    
+    
     //地図の真ん中の位置を緯度と経度で設定
     //co.latitude = 34.071369;
     //co.longitude = 134.556196;
@@ -287,61 +289,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
 }
 
--(void)createPin{
-    // 徳島駅
-    createPin *tokushimaEki = [[createPin alloc] init];
-    tokushimaEki.coordinate = CLLocationCoordinate2DMake(34.074642, 134.550764);
-    tokushimaEki.title = @"徳島駅の伝言板";
-    
-    //東京タワー
-    createPin *tt = [[createPin alloc] init];
-    tt.coordinate = CLLocationCoordinate2DMake(35.655333, 139.748611);
-    tt.title = @"Tokyo Tower";
-    
-    // Tokyo Skytree
-    createPin *st = [[createPin alloc] init];
-    st.coordinate = CLLocationCoordinate2DMake(35.710139, 139.810833);
-    st.title = @"Tokyo Skytree";
-    
-    [self.map addAnnotations:@[tokushimaEki,tt,st]];
-    
-    
-
-}
 
 -(void)didTouroku{
-    //デリゲートします
-    NSLog(@"デリゲートOK");
-    //現在地を取得
-    //現在地にピンを立てて
-    createPin *genzaithi = [[createPin alloc] init];
-    genzaithi.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    NSLog(@"%f,%fにピンを立てました",latitude,longitude);
-    genzaithi.title = (@"１件の声登録があります");
-    //hotpepper.subtitle = (@"%@",address);
-    [self.map addAnnotations:@[genzaithi]];
-    
-    
-    //ラベル追加
-    namelabel = [[UILabel alloc] init];
-    namelabel.frame = CGRectMake(20, 10, 200, 60);
-    namelabel.numberOfLines = 2;
-    namelabel.backgroundColor = [UIColor whiteColor];
-    namelabel.textColor = [UIColor blackColor];
-    namelabel.font = [UIFont fontWithName:@"AppleGothic" size:16];
-    //NSLog(@"ラベルは%@",nameArray[i]);
-    [namelabelArray addObject:namelabel];
-    //NSLog(@"ラベル配列の要素は%ld個",namelabelArray.count);
-    
-    //ラベル追加
-    //addresslabel = [[UILabel alloc] init];
-    //addresslabel.frame = CGRectMake(10, 35, 260, 30);
-    //addresslabel.backgroundColor = [UIColor whiteColor];
-    //addresslabel.textColor = [UIColor blackColor];
-    //addresslabel.font = [UIFont fontWithName:@"AppleGothic" size:13];
-    
-
-    //現在地ピンのアノケーションビューに録音再生ボタンと録音タイトルを表示
 }
 
 -(void)QuerySearch{
@@ -430,5 +379,38 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
     //[self QuerySearch];
 
+}
+
+-(void)newAnnotation{
+        //デリゲートを自分自身に設定
+        self.map.delegate = self;
+        //緯度と経度情報を格納する変数の初期化(鳴門市文化会館に設定)
+        co.latitude = 34.071252;
+        co.longitude = 134.556152;
+        //coを元にsampleannotetion型の変数を生成
+        CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:co];
+        annotetion.title = @"徳島駅　掲示板";
+        annotetion.subtitle = @"1件の伝声があります";
+        //MKCooredinateRegionの変数の初期化
+        MKCoordinateRegion region = self.map.region;
+        //マップが表示された時の中心の経度設定
+        region.center.longitude = co.longitude;
+        //マップが表示された時の中心の緯度設定
+        region.center.latitude = co.latitude;
+        //緯度と経度情報を格納する変数の値を変更
+        co.latitude = 34.073456;
+        co.longitude = 134.54946;
+        //coを元にsampleannotetion型の2つめの変数を生成
+        CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:co];
+        annotetion2.title = @"そごう　掲示板";
+        annotetion2.subtitle = @"1件の伝声があります";
+        //現在地から店の距離によってマップの縮尺度を設定(幅1km分にする)
+        region.span.latitudeDelta = 1 / 111.2;
+        region.span.longitudeDelta = 1 / 111.2;
+        [self.map setRegion:region];
+        //2つアノテーションを追加
+        [self.map addAnnotation:annotetion];
+        [self.map addAnnotation:annotetion2];
+        self.map.showsUserLocation = YES;
 }
 @end

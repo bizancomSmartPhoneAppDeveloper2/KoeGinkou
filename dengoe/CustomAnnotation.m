@@ -1,26 +1,19 @@
 //
-//  createPin.m
+//  CustomAnnotation.m
 //  dengoe
 //
-//  Created by ビザンコムマック０４ on 2014/10/21.
+//  Created by ビザンコムマック０４ on 2014/10/23.
 //  Copyright (c) 2014年 ビザンコムマック０４. All rights reserved.
 //
 
-#import "createPin.h"
+#import "CustomAnnotation.h"
 
-@implementation createPin
+@implementation CustomAnnotation
 //アクセサメソッドを自動生成
 @synthesize coordinate;
 @synthesize title;
 @synthesize subtitle;
-@synthesize name;
-@synthesize open;
-@synthesize close;
-@synthesize coupon_urls;
-@synthesize price;
-@synthesize parking;
-
-
+@synthesize sample;
 
 //初期化用のメソッド
 -(id)initwithCoordinate:(CLLocationCoordinate2D)co{
@@ -28,3 +21,4 @@
     return self;
 }
 @end
+

@@ -42,11 +42,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="rokuonView" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMo-rK-Jzs">
-                                <rect key="frame" x="127" y="333" width="80" height="84"/>
+                                <rect key="frame" x="127" y="224" width="80" height="84"/>
                                 <state key="normal" image="saisei.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -54,18 +54,8 @@
                                     <action selector="rokuonListen:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KPh-lW-bhE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdK-h7-IzF">
-                                <rect key="frame" x="215" y="444" width="45" height="30"/>
-                                <state key="normal" title="声登録">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tourokuButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="neh-av-lsq"/>
-                                    <segue destination="49e-Tb-3d3" kind="modal" id="l0q-aH-DLh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yQ-ma-fAy">
-                                <rect key="frame" x="75" y="133" width="185" height="175"/>
+                                <rect key="frame" x="75" y="35" width="185" height="175"/>
                                 <state key="normal" image="Mike.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -74,18 +64,28 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登録名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1z-VZ-yMS">
-                                <rect key="frame" x="56" y="444" width="151" height="30"/>
+                                <rect key="frame" x="56" y="333" width="151" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <action selector="userName:" destination="8rJ-Kc-sve" eventType="editingDidEnd" id="sJ4-68-pgc"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdK-h7-IzF">
+                                <rect key="frame" x="220" y="333" width="45" height="30"/>
+                                <state key="normal" title="声登録">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tourokuButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="neh-av-lsq"/>
+                                    <segue destination="49e-Tb-3d3" kind="modal" id="l0q-aH-DLh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="声を登録" image="second" id="cPa-gy-q4n"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="myTextField" destination="T1z-VZ-yMS" id="haC-JE-djP"/>
                         <outlet property="rokuonStartStopImage" destination="5yQ-ma-fAy" id="r6p-jF-fTB"/>

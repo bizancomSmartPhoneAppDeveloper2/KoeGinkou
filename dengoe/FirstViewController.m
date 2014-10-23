@@ -67,8 +67,16 @@
     dbLng = 0;
     salonNumber = 0;
 
+    // 500mの範囲円を追加
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:co radius: 500.0];
+    [self.map addOverlay:circle];
     //[self getObject];
     //[self defaultMapSettei];
+    CLLocationDistance radiusOnMeter = 100.0;
+    
+    CLRegion *grRegion = [[CLRegion alloc] initCircularRegionWithCenter:co radius:radiusOnMeter identifier:@"そごう"];
+    [self.locationManager startMonitoringForRegion:grRegion];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -257,7 +265,6 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     longitude = location.coordinate.longitude;
     [self.locationManager stopUpdatingLocation];
     [self defaultMapSettei];
-    [self didTouroku];
 
 }
 
@@ -389,7 +396,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         co.longitude = 134.556152;
         //coを元にsampleannotetion型の変数を生成
         CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:co];
-        annotetion.title = @"徳島駅　掲示板";
+        annotetion.title = @"文化センター　掲示板";
         annotetion.subtitle = @"1件の伝声があります";
         //MKCooredinateRegionの変数の初期化
         MKCoordinateRegion region = self.map.region;
@@ -412,5 +419,40 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         [self.map addAnnotation:annotetion];
         [self.map addAnnotation:annotetion2];
         self.map.showsUserLocation = YES;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay
+{
+    
+    MKCircle* circle = overlay;
+    MKCircleView* circleOverlayView =   [[MKCircleView alloc] initWithCircle:circle];
+    circleOverlayView.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
+    circleOverlayView.lineWidth = 4.;
+    circleOverlayView.fillColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.35];
+    return circleOverlayView;
+    
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+    [self.locationManager startUpdatingLocation];
+    
+    return YES;
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    NSLog(@"ジオフェンス領域%@に入りました",region.identifier);
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSLog(@"ジオフェンス領域%@から出ました",region.identifier);
 }
 @end

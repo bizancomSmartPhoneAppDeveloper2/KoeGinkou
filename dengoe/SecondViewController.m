@@ -21,6 +21,7 @@
 }
 
 - (void)viewDidLoad {
+    rokuonStarting = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.myTextField.delegate = self;
@@ -32,50 +33,96 @@
 }
 
 - (IBAction)rokuonStart:(UIButton *)sender {
+    //録音状態でないかどうか
     if (rokuonStarting == NO) {
-    audioSession = [AVAudioSession sharedInstance];
-    NSError *error = nil;
-    // 使用している機種が録音に対応しているか
-    if ([audioSession inputIsAvailable]) {
-        [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
-    }
-    if(error){
-        NSLog(@"audioSession: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
-    }
-    // 録音機能をアクティブにする
-    [audioSession setActive:YES error:&error];
-    if(error){
-        NSLog(@"audioSession: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
-    }
-    
-    // 録音ファイルパス
-    NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                             NSUserDomainMask,YES);
-    NSString *documentDir = [filePaths objectAtIndex:0];
-    NSString *path = [documentDir stringByAppendingPathComponent:@"rec.caf"];
-    NSURL *recordingURL = [NSURL fileURLWithPath:path];
-    
-    // 録音中に音量をとる場合はYES
-    //    AvRecorder.meteringEnabled = YES;
-    
-    avRecorder = [[AVAudioRecorder alloc] initWithURL:recordingURL settings:nil error:&error];
-    
-    if(error){
-        NSLog(@"error = %@",error);
-        return;
-    }
-    avRecorder.delegate=self;
-    //    ５秒録音して終了する場合
-    //    [avRecorder recordForDuration: 5.0];
-    [avRecorder record];
-        rokuonStarting = YES;
         self.rokuonStartStopImage.alpha = 1;
+        audioSession = [AVAudioSession sharedInstance];
+        NSError *error = nil;
+        // 使用している機種が録音に対応しているか
+        if ([audioSession inputIsAvailable]) {
+            [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+        }
+        if(error){
+            NSLog(@"audioSession: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
+        }
+        // 録音機能をアクティブにする
+        [audioSession setActive:YES error:&error];
+        if(error){
+            NSLog(@"audioSession: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
+        }
+        
+        // 録音ファイルパス
+        NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,YES);
+        NSString *documentDir = [filePaths objectAtIndex:0];
+        //wavファイルとして保存する
+        NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
+        NSURL *recordingURL = [NSURL fileURLWithPath:path];
+        avRecorder = [[AVAudioRecorder alloc] initWithURL:recordingURL settings:nil error:&error];
+        
+        if(error){
+            NSLog(@"patherror = %@",error);
+            return;
+        }
+        //録音開始
+        
+        [avRecorder record];
+        rokuonStarting = YES;
+        
+    }
+    //録音状態であるかどうか
+    else if(rokuonStarting == YES){
+        self.rokuonStartStopImage.alpha = 0.3;
 
-    }else if(rokuonStarting == YES){
+        //録音をやめる
         [avRecorder stop];
         rokuonStarting = NO;
-        self.rokuonStartStopImage.alpha = 0.5;
+        NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,YES);
+        NSString *documentDir = [filePaths objectAtIndex:0];
+        NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
+        
+        
+        //パスからデータを取得
+        NSData *musicdata = [[NSData alloc]initWithContentsOfFile:path];
+        //ファイルをサーバーにアップするためのプログラムのURLを生成
+        NSURL *url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php"];
+        //urlをもとにしたリクエストを生成
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+        //リクエストメッセージのbody部分を作るための変数
+        NSMutableData *body = [NSMutableData data];
+        //バウンダリ文字列(仕切線)を格納している変数
+        NSString *boundary = @"---------------------------168072824752491622650073";
+        //Content-typeヘッダに設定する情報を格納する変数
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+        //POST形式の通信を行うようにする
+        [request setHTTPMethod:@"POST"];
+        //bodyの最初にバウンダリ文字列(仕切線)を追加
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //サーバー側に送るファイルの項目名をsample
+        //送るファイル名をsaple.mp3と設定
+        [body appendData:[@"Content-Disposition: form-data; name=\"sample\"; filename=\"sample.mp3\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        //送るファイルのデータのタイプを設定する情報を追加
+        [body appendData:[@"Content-Type: audio/mpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        //音楽ファイルのデータを追加
+        [body appendData:musicdata];
+        NSLog(@"録音のデータサイズ%dバイト",musicdata.length);
+        //最後にバウンダリ文字列を追加
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //ヘッダContent-typeに情報を追加
+        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        //リクエストのボディ部分に変数bodyをセット
+        [request setHTTPBody:body];
+        NSURLResponse *response;
+        NSError *err = nil;
+        //サーバーとの通信を行う
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+        //サーバーからのデータを文字列に変換
+        NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",datastring);
+        
     }
+    
 }
 
 - (IBAction)rokuonListen:(UIButton *)sender {
@@ -86,13 +133,13 @@
     NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask,YES);
     NSString *documentDir = [filePaths objectAtIndex:0];
-    NSString *path = [documentDir stringByAppendingPathComponent:@"rec.caf"];
+    //rec.wavファイルがあるパスの文字列を格納
+    NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
     NSURL *recordingURL = [NSURL fileURLWithPath:path];
     
-    //再生
     avPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:recordingURL error:nil];
-    avPlayer.delegate = self;
     avPlayer.volume=1.0;
+    //再生
     [avPlayer play];
 }
 

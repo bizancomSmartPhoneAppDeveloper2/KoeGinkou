@@ -8,8 +8,8 @@
 
 #import "FirstViewController.h"
 #import "CustomAnnotation.h"
-#import <NCMB/NCMB.h>
-#import "tableTableViewController.h"
+//#import <NCMB/NCMB.h>
+#import "WebViewController.h"
 
 @interface FirstViewController ()
 @end
@@ -49,6 +49,8 @@
     [self newAnnotation];
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    latitude = 0;
+    longitude = 0;
     [self.map setDelegate: self];
     [self locationManagerMethod];
     SecondViewController *rokuonView = self.parentViewController;
@@ -118,17 +120,21 @@
         buttontag = button.tag;
         //NSLog(@"ボタン配列の要素が%ld個",buttonArray.count);
     }
+    
 }
 
 //アノテーションのコールアウトに追加したボタンがタップされるとこのメソッドが呼ばれる
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    tableTableViewController *tableView = [self.storyboard instantiateViewControllerWithIdentifier:@"tableView"];
-    [self presentViewController:tableView animated:YES completion:nil];
-    
-    
-    
-    }
+    //webViewに遷移
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+    [self presentViewController:webView animated:YES completion:nil];
+
+    //アノテーションの情報を取得
+    NSLog(@"title: %@", view.annotation.title);
+    NSLog(@"subtitle: %@", view.annotation.subtitle);
+    NSLog(@"coord: %f, %f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude);
+}
 
 -(void)subViewClose:(UIButton*)stampPanelCloseBtn{
     // subviewを隠す
@@ -239,93 +245,93 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 -(void)didTouroku{
 }
 
--(void)QuerySearch{
+//-(void)QuerySearch{
     //検索開始地点に新宿駅の座標を設定
-    double latitude1 = 35.690921;
-    double longitude1 = 139.700258;
-    NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude1 longitude:longitude1];
+    //double latitude1 = 35.690921;
+    //double longitude1 = 139.700258;
+    //NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude1 longitude:longitude1];
     
     //設定した座標から5キロメートル内を検索
-    NCMBQuery *geoQuery = [NCMBQuery queryWithClassName:@"Places"];
-    [geoQuery whereKey:@"point" nearGeoPoint:geoPoint withinKilometers:5.0];
-    [geoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error){
-        if (!error) {
+    //NCMBQuery *geoQuery = [NCMBQuery queryWithClassName:@"Places"];
+    //[geoQuery whereKey:@"point" nearGeoPoint:geoPoint withinKilometers:5.0];
+    //[geoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error){
+        //if (!error) {
             //成功後の処理
             //NSLog(@"%@",geoQuery);
-        }
-        else{
+        //}
+        //else{
             //エラー処理
-            NSLog(@"error");
-        }
-    }];
+           // NSLog(@"error");
+        //}
+    //}];
     
-}
+//}
 
--(void)getObject{
-    NCMBQuery *query = [NCMBQuery queryWithClassName:@"Places"];
-    [query whereKey:@"areaName" equalTo:@"新宿駅"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objs, NSError *error) {
-        for (NCMBObject *obj in objs) {
+//-(void)getObject{
+   // NCMBQuery *query = [NCMBQuery queryWithClassName:@"Places"];
+    //[query whereKey:@"areaName" equalTo:@"新宿駅"];
+    //[query findObjectsInBackgroundWithBlock:^(NSArray *objs, NSError *error) {
+        //for (NCMBObject *obj in objs) {
             //NSLog(@"%@", obj);
             
             // objectForKeyアクセス
-            NSString *point = [obj objectForKey:@"point"];
+            //NSString *point = [obj objectForKey:@"point"];
             //NSLog(@"point:%@", point)
-            NSString *areaName = [obj objectForKey:@"areaName"];
+            //NSString *areaName = [obj objectForKey:@"areaName"];
             // プロパティアクセス
-            NSString *objectId = obj.objectId;
+            //NSString *objectId = obj.objectId;
             //NSString *areaName = Places.areaName;
-            NSLog(@"areaName:%@,objectId:%@,point:%@",areaName, objectId, point);
+            //NSLog(@"areaName:%@,objectId:%@,point:%@",areaName, objectId, point);
             // 再取得
-            [obj refresh];
-        }
-    }];
-}
+            //[obj refresh];
+        //}
+    //}];
+//}
 
--(void)createObjectAPI{
-    NSString *areaName = @"新宿駅";
+//-(void)createObjectAPI{
+   // NSString *areaName = @"新宿駅";
     
     //geoPointの生成
-    double latitude0 = 35.690921;
-    double longitude0 = 139.700258;
-    NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude0 longitude:longitude0];
+    //double latitude0 = 35.690921;
+    //double longitude0 = 139.700258;
+    //NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude0 longitude:longitude0];
     
     //geoPointの保存
-    NCMBObject *obj = [NCMBObject objectWithClassName:@"Places"];
-    [obj setObject:geoPoint forKey:@"point"];
-    [obj setObject:areaName forKey:@"areaName"];
-    [obj saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
-        if (!error) {
+    //NCMBObject *obj = [NCMBObject objectWithClassName:@"Places"];
+    //[obj setObject:geoPoint forKey:@"point"];
+    //[obj setObject:areaName forKey:@"areaName"];
+    //[obj saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
+     //   if (!error) {
             //成功後の処理
-        }
-        else {
+       // }
+      //  else {
             //エラー処理
-        }
-    }];
+       // }
+    //}];
     
-    NSString *areaName1 = @"高田馬場駅";
+    //NSString *areaName1 = @"高田馬場駅";
     
     //geoPointの生成
-    NCMBGeoPoint *geoPoint1 = [NCMBGeoPoint geoPoint];
-    geoPoint1.latitude = 35.712285;
-    geoPoint1.longitude = 139.703782;
+    //NCMBGeoPoint *geoPoint1 = [NCMBGeoPoint geoPoint];
+    //geoPoint1.latitude = 35.712285;
+    //geoPoint1.longitude = 139.703782;
     
     //geoPointの保存
-    NCMBObject *obj1 = [NCMBObject objectWithClassName:@"Places"];
-    [obj1 setObject:geoPoint1 forKey:@"point"];
-    [obj1 setObject:areaName1 forKey:@"areaName"];
-    [obj1 saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
-        if (!error) {
+    //NCMBObject *obj1 = [NCMBObject objectWithClassName:@"Places"];
+    //[obj1 setObject:geoPoint1 forKey:@"point"];
+    //[obj1 setObject:areaName1 forKey:@"areaName"];
+    //[obj1 saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
+        //if (!error) {
             //成功後の処理
-        }
-        else {
+        //}
+        //else {
             //エラー処理
-        }
-    }];
+        //}
+    //}];
     
     //[self QuerySearch];
 
-}
+//}
 
 -(void)newAnnotation{
         //デリゲートを自分自身に設定
@@ -346,10 +352,11 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         //緯度と経度情報を格納する変数の値を変更
         co.latitude = 34.073456;
         co.longitude = 134.54946;
-        //coを元にsampleannotetion型の2つめの変数を生成
+        //coを元にannotetion型の2つめの変数を生成
         CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:co];
         annotetion2.title = @"そごう　掲示板";
         annotetion2.subtitle = @"1件の伝声があります";
+    
         //現在地から店の距離によってマップの縮尺度を設定(幅1km分にする)
         region.span.latitudeDelta = 1 / 111.2;
         region.span.longitudeDelta = 1 / 111.2;
@@ -357,9 +364,11 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         //2つアノテーションを追加
         [self.map addAnnotation:annotetion];
         [self.map addAnnotation:annotetion2];
+        //現在地を表示
         self.map.showsUserLocation = YES;
 }
 
+//オーバーレイを作成
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay
 {
     
@@ -372,6 +381,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
 }
 
+//ジオフェンス設定
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.locationManager = [[CLLocationManager alloc] init];
@@ -379,18 +389,17 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
     [self.locationManager startUpdatingLocation];
-    
     return YES;
-    
 }
 
+//ジオフェンス監視（入ったとき呼ばれるメソッド）
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     NSLog(@"ジオフェンス領域%@に入りました",region.identifier);
     [self.map addOverlay:circle];
-    
 }
 
+//ジオフェンス監視（出たとき呼ばれるメソッド）
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     NSLog(@"ジオフェンス領域%@から出ました",region.identifier);
@@ -472,9 +481,9 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     //addresslabel.text = (@"%@",view.annotation.subtitle);
     //NSLog(@"オープン時間:%@",pin.open);
     //NSLog(@"閉店時間%@",pin.close);
-    
-    
-    
+}
+
+- (IBAction)goBackHome:(UIStoryboardSegue *)segue{
 }
 
 @end

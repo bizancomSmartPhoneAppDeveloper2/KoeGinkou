@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		073B67D519F896CD007FB05E /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 073B67D419F896CD007FB05E /* CustomAnnotation.m */; };
-		0773119F19F9D66F00E704E1 /* tableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0773119E19F9D66F00E704E1 /* tableTableViewController.m */; };
+		07A5BF3119FBE51200C0FDD3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A5BF3019FBE51200C0FDD3 /* WebViewController.m */; };
 		07BED0DD19F5F1DC00BB7759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DC19F5F1DC00BB7759 /* main.m */; };
 		07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DF19F5F1DC00BB7759 /* AppDelegate.m */; };
 		07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0E219F5F1DC00BB7759 /* FirstViewController.m */; };
@@ -49,8 +49,8 @@
 /* Begin PBXFileReference section */
 		073B67D319F896CD007FB05E /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotation.h; sourceTree = "<group>"; };
 		073B67D419F896CD007FB05E /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
-		0773119D19F9D66F00E704E1 /* tableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tableTableViewController.h; sourceTree = "<group>"; };
-		0773119E19F9D66F00E704E1 /* tableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tableTableViewController.m; sourceTree = "<group>"; };
+		07A5BF2F19FBE51200C0FDD3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		07A5BF3019FBE51200C0FDD3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		07BED0D719F5F1DC00BB7759 /* dengoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dengoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BED0DB19F5F1DC00BB7759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BED0DC19F5F1DC00BB7759 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -144,8 +144,6 @@
 		07BED0D919F5F1DC00BB7759 /* dengoe */ = {
 			isa = PBXGroup;
 			children = (
-				0773119D19F9D66F00E704E1 /* tableTableViewController.h */,
-				0773119E19F9D66F00E704E1 /* tableTableViewController.m */,
 				073B67D319F896CD007FB05E /* CustomAnnotation.h */,
 				073B67D419F896CD007FB05E /* CustomAnnotation.m */,
 				07BED0DE19F5F1DC00BB7759 /* AppDelegate.h */,
@@ -155,6 +153,8 @@
 				07BED0E419F5F1DC00BB7759 /* SecondViewController.h */,
 				07BED0E519F5F1DC00BB7759 /* SecondViewController.m */,
 				07BED0E719F5F1DC00BB7759 /* Main.storyboard */,
+				07A5BF2F19FBE51200C0FDD3 /* WebViewController.h */,
+				07A5BF3019FBE51200C0FDD3 /* WebViewController.m */,
 				07BED0EA19F5F1DC00BB7759 /* Images.xcassets */,
 				07BED0EC19F5F1DC00BB7759 /* LaunchScreen.xib */,
 				07BED0DA19F5F1DC00BB7759 /* Supporting Files */,
@@ -310,11 +310,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BED0E619F5F1DC00BB7759 /* SecondViewController.m in Sources */,
+				07A5BF3119FBE51200C0FDD3 /* WebViewController.m in Sources */,
 				07ECD39D19F69DD500EF8EBB /* CHANGELOG.md in Sources */,
 				07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */,
 				073B67D519F896CD007FB05E /* CustomAnnotation.m in Sources */,
 				07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */,
-				0773119F19F9D66F00E704E1 /* tableTableViewController.m in Sources */,
 				07ECD39E19F69DD500EF8EBB /* JSONKit.m in Sources */,
 				07ECD39F19F69DD500EF8EBB /* README.md in Sources */,
 				07BED0DD19F5F1DC00BB7759 /* main.m in Sources */,

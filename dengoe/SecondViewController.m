@@ -83,16 +83,7 @@
         NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                                  NSUserDomainMask,YES);
         NSString *documentDir = [filePaths objectAtIndex:0];
-        
-        [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
-        NSDate *date = [NSDate date];
-        self.dateString = [formatter stringFromDate:date];
-        
-        
         NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
-        
         
         //パスからデータを取得
         NSData *musicdata = [[NSData alloc]initWithContentsOfFile:path];
@@ -110,8 +101,9 @@
         [request setHTTPMethod:@"POST"];
         //bodyの最初にバウンダリ文字列(仕切線)を追加
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        
         //サーバー側に送るファイルの項目名をsample
+        
+        
         //送るファイル名をdateと設定
         [body appendData:[@"Content-Disposition: form-data; name=\"date\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
         //現在日時の文字列データ追加
@@ -142,6 +134,14 @@
         //サーバーからのデータを文字列に変換
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         //NSLog(@"%@",datastring);
+        
+        
+        [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+        NSDate *date = [NSDate date];
+        self.dateString = [formatter stringFromDate:date];
+
         
     }
     

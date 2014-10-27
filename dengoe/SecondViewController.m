@@ -112,6 +112,14 @@
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         
         //サーバー側に送るファイルの項目名をsample
+        //送るファイル名をdateと設定
+        [body appendData:[@"Content-Disposition: form-data; name=\"date\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
+        //現在日時の文字列データ追加
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", self.dateString] dataUsingEncoding:NSUTF8StringEncoding]];
+        //bodyの最初にバウンダリ文字列(仕切線)を追加
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        //サーバー側に送るファイルの項目名をsample
         //送るファイル名をsaple.mp3と設定
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sample\"; filename=\"%dsample.mp3\"\r\n",number]  dataUsingEncoding:NSUTF8StringEncoding]];
         number++;
@@ -133,7 +141,7 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
         //サーバーからのデータを文字列に変換
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",datastring);
+        //NSLog(@"%@",datastring);
         
     }
     

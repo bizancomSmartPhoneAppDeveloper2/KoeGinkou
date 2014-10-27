@@ -85,6 +85,14 @@
         NSString *documentDir = [filePaths objectAtIndex:0];
         NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
         
+        [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+        NSDate *date = [NSDate date];
+        self.dateString = [formatter stringFromDate:date];
+        
+
+        
         //パスからデータを取得
         NSData *musicdata = [[NSData alloc]initWithContentsOfFile:path];
         //ファイルをサーバーにアップするためのプログラムのURLを生成
@@ -134,15 +142,6 @@
         //サーバーからのデータを文字列に変換
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         //NSLog(@"%@",datastring);
-        
-        
-        [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
-        NSDate *date = [NSDate date];
-        self.dateString = [formatter stringFromDate:date];
-
-        
     }
     
 }

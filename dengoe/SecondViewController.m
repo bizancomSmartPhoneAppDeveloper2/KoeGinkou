@@ -18,6 +18,8 @@
     AVAudioSession *audioSession;
     AVAudioPlayer *avPlayer;
     BOOL rokuonStarting;
+    NSInteger number;
+    
 }
 
 - (void)viewDidLoad {
@@ -25,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.myTextField.delegate = self;
+    number = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,12 +46,12 @@
             [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
         }
         if(error){
-            NSLog(@"audioSession: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
+            NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
         }
         // 録音機能をアクティブにする
         [audioSession setActive:YES error:&error];
         if(error){
-            NSLog(@"audioSession: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
+            NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
         }
         
         // 録音ファイルパス
@@ -80,6 +83,14 @@
         NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                                  NSUserDomainMask,YES);
         NSString *documentDir = [filePaths objectAtIndex:0];
+        
+        [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+        NSDate *date = [NSDate date];
+        self.dateString = [formatter stringFromDate:date];
+        
+        
         NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
         
         
@@ -99,9 +110,12 @@
         [request setHTTPMethod:@"POST"];
         //bodyの最初にバウンダリ文字列(仕切線)を追加
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
         //サーバー側に送るファイルの項目名をsample
         //送るファイル名をsaple.mp3と設定
-        [body appendData:[@"Content-Disposition: form-data; name=\"sample\"; filename=\"sample.mp3\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sample\"; filename=\"%dsample.mp3\"\r\n",number]  dataUsingEncoding:NSUTF8StringEncoding]];
+        number++;
+        NSLog(@"%d",number);
         //送るファイルのデータのタイプを設定する情報を追加
         [body appendData:[@"Content-Type: audio/mpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         //音楽ファイルのデータを追加

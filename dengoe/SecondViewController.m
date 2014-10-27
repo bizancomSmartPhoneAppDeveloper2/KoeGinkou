@@ -61,7 +61,20 @@
         //wavファイルとして保存する
         NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
         NSURL *recordingURL = [NSURL fileURLWithPath:path];
-        avRecorder = [[AVAudioRecorder alloc] initWithURL:recordingURL settings:nil error:&error];
+        NSDictionary *dic;
+        //AVEncoderAudioQualityKey オーディオ品質を設定するキー?
+        //AVEncoderBitRateKey オーディオビットレートを設定するキー?
+        //AVSampleRateKey 周波数(ヘルツ)を設定するキー?(このキーの値が小さいほどデータのサイズは小さくなる?)
+        //AVNumberOfChannelsKey　チャネルの数を設定するキー?
+        dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:AVAudioQualityLow],AVEncoderAudioQualityKey,
+               [NSNumber numberWithInt:16],
+               AVEncoderBitRateKey,
+               [NSNumber numberWithInt: 1],
+               AVNumberOfChannelsKey,
+               [NSNumber numberWithFloat:1000.0],
+               AVSampleRateKey,
+               nil];
+        avRecorder = [[AVAudioRecorder alloc] initWithURL:recordingURL settings:dic error:&error];
         
         if(error){
             NSLog(@"patherror = %@",error);
@@ -141,7 +154,7 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
         //サーバーからのデータを文字列に変換
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        //NSLog(@"%@",datastring);
+        NSLog(@"%@",datastring);
     }
     
 }

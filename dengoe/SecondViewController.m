@@ -19,7 +19,8 @@
     AVAudioPlayer *avPlayer;
     BOOL rokuonStarting;
     NSInteger number;
-    
+    NSString *userNameString;
+    NSString *filename;
 }
 
 - (void)viewDidLoad {
@@ -71,7 +72,7 @@
                AVEncoderBitRateKey,
                [NSNumber numberWithInt: 1],
                AVNumberOfChannelsKey,
-               [NSNumber numberWithFloat:1000.0],
+               [NSNumber numberWithFloat:500.0],
                AVSampleRateKey,
                nil];
         avRecorder = [[AVAudioRecorder alloc] initWithURL:recordingURL settings:dic error:&error];
@@ -98,18 +99,18 @@
         NSString *documentDir = [filePaths objectAtIndex:0];
         NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
         
-        [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
-        NSDate *date = [NSDate date];
-        self.dateString = [formatter stringFromDate:date];
         
-
         
         //パスからデータを取得
         NSData *musicdata = [[NSData alloc]initWithContentsOfFile:path];
         //ファイルをサーバーにアップするためのプログラムのURLを生成
         NSURL *url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php"];
+        NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
+        NSData *urldata = [NSData dataWithContentsOfURL:suburl];
+        NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
+        NSLog(@"番号%@",numstr);
+        number = [numstr intValue];
+        NSLog(@"テーブルのカウント数%d",number);
         //urlをもとにしたリクエストを生成
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
         //リクエストメッセージのbody部分を作るための変数
@@ -125,6 +126,11 @@
         //サーバー側に送るファイルの項目名をsample
         
         
+        [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+        NSDate *date = [NSDate date];
+        self.dateString = [formatter stringFromDate:date];
         //送るファイル名をdateと設定
         [body appendData:[@"Content-Disposition: form-data; name=\"date\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
         //現在日時の文字列データ追加
@@ -132,10 +138,24 @@
         //bodyの最初にバウンダリ文字列(仕切線)を追加
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         
+        
+        //usernameを送信する
+        userNameString = @"さわだ";
+        //送るファイル名をusernameと設定
+        [body appendData:[@"Content-Disposition: form-data; name=\"username\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
+        //文字列データ追加
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", userNameString] dataUsingEncoding:NSUTF8StringEncoding]];
+        //bodyの最初にバウンダリ文字列(仕切線)を追加
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+        
+        
         //サーバー側に送るファイルの項目名をsample
         //送るファイル名をsaple.mp3と設定
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sample\"; filename=\"%dsample.mp3\"\r\n",number]  dataUsingEncoding:NSUTF8StringEncoding]];
         number++;
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sample\"; filename=\"%dsample.mp3\"\r\n",number]  dataUsingEncoding:NSUTF8StringEncoding]];
+        filename = [NSString stringWithFormat:@"%dsample.mp3",number];
+        
         NSLog(@"%d",number);
         //送るファイルのデータのタイプを設定する情報を追加
         [body appendData:[@"Content-Type: audio/mpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];

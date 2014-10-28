@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class tableView;
+@class SecondViewController;
+@class WebViewController;
+@class bizanViewController;
+@class tsurugisanViewController;
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 // ここに受け渡ししたい変数を宣言
+@property (strong, nonatomic) NSString *send_URL;
+
 
 @end
 

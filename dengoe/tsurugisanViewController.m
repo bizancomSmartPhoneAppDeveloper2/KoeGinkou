@@ -1,26 +1,26 @@
 //
-//  WebViewController.m
+//  tsurugisanViewController.m
 //  dengoe
 //
-//  Created by ビザンコムマック０４ on 2014/10/25.
+//  Created by ビザンコムマック０４ on 2014/10/28.
 //  Copyright (c) 2014年 ビザンコムマック０４. All rights reserved.
 //
 
-#import "WebViewController.h"
+#import "tsurugisanViewController.h"
 
-@interface WebViewController ()
+@interface tsurugisanViewController ()
 
 @end
 
-@implementation WebViewController
+@implementation tsurugisanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSURL *url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    [self.webView loadRequest:request];
+    NSURL *tsurugisan_url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php"];
+    NSURLRequest *tsurugisan_request = [NSURLRequest requestWithURL:tsurugisan_url];
+    [self.webView loadRequest:tsurugisan_request];
+
 }
 
 - (void)didReceiveMemoryWarning {

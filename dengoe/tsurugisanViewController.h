@@ -1,16 +1,13 @@
 //
-//  WebViewController.h
+//  tsurugisanViewController.h
 //  dengoe
 //
-//  Created by ビザンコムマック０４ on 2014/10/25.
+//  Created by ビザンコムマック０４ on 2014/10/28.
 //  Copyright (c) 2014年 ビザンコムマック０４. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
 
-
-@interface WebViewController : UIViewController
+@interface tsurugisanViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-
 @end

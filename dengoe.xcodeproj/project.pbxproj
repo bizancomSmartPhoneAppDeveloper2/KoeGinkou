@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070CF28419FF662E00DF34EA /* bizanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070CF28319FF662E00DF34EA /* bizanViewController.m */; };
+		070CF28719FF6AB300DF34EA /* tsurugisanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070CF28619FF6AB300DF34EA /* tsurugisanViewController.m */; };
 		073B67D519F896CD007FB05E /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 073B67D419F896CD007FB05E /* CustomAnnotation.m */; };
 		07A5BF3119FBE51200C0FDD3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A5BF3019FBE51200C0FDD3 /* WebViewController.m */; };
 		07BED0DD19F5F1DC00BB7759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DC19F5F1DC00BB7759 /* main.m */; };
@@ -47,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070CF28219FF662E00DF34EA /* bizanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bizanViewController.h; sourceTree = "<group>"; };
+		070CF28319FF662E00DF34EA /* bizanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bizanViewController.m; sourceTree = "<group>"; };
+		070CF28519FF6AB300DF34EA /* tsurugisanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tsurugisanViewController.h; sourceTree = "<group>"; };
+		070CF28619FF6AB300DF34EA /* tsurugisanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tsurugisanViewController.m; sourceTree = "<group>"; };
 		073B67D319F896CD007FB05E /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotation.h; sourceTree = "<group>"; };
 		073B67D419F896CD007FB05E /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
 		07A5BF2F19FBE51200C0FDD3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -153,6 +159,10 @@
 				07BED0E419F5F1DC00BB7759 /* SecondViewController.h */,
 				07BED0E519F5F1DC00BB7759 /* SecondViewController.m */,
 				07BED0E719F5F1DC00BB7759 /* Main.storyboard */,
+				070CF28519FF6AB300DF34EA /* tsurugisanViewController.h */,
+				070CF28619FF6AB300DF34EA /* tsurugisanViewController.m */,
+				070CF28219FF662E00DF34EA /* bizanViewController.h */,
+				070CF28319FF662E00DF34EA /* bizanViewController.m */,
 				07A5BF2F19FBE51200C0FDD3 /* WebViewController.h */,
 				07A5BF3019FBE51200C0FDD3 /* WebViewController.m */,
 				07BED0EA19F5F1DC00BB7759 /* Images.xcassets */,
@@ -310,8 +320,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BED0E619F5F1DC00BB7759 /* SecondViewController.m in Sources */,
+				070CF28419FF662E00DF34EA /* bizanViewController.m in Sources */,
 				07A5BF3119FBE51200C0FDD3 /* WebViewController.m in Sources */,
 				07ECD39D19F69DD500EF8EBB /* CHANGELOG.md in Sources */,
+				070CF28719FF6AB300DF34EA /* tsurugisanViewController.m in Sources */,
 				07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */,
 				073B67D519F896CD007FB05E /* CustomAnnotation.m in Sources */,
 				07BED0E319F5F1DC00BB7759 /* FirstViewController.m in Sources */,

@@ -11,7 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
 
-
 @interface SecondViewController : UIViewController<UITextFieldDelegate>
 - (IBAction)rokuonStart:(UIButton *)sender;
 - (IBAction)rokuonListen:(UIButton *)sender;
@@ -24,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 @property NSString *userName;
 @property NSString *dateString;
+
 @end
 

@@ -1,26 +1,27 @@
 //
-//  WebViewController.m
+//  bizanViewController.m
 //  dengoe
 //
-//  Created by ビザンコムマック０４ on 2014/10/25.
+//  Created by ビザンコムマック０４ on 2014/10/28.
 //  Copyright (c) 2014年 ビザンコムマック０４. All rights reserved.
 //
 
-#import "WebViewController.h"
+#import "bizanViewController.h"
 
-@interface WebViewController ()
+@interface bizanViewController ()
 
 @end
 
-@implementation WebViewController
+@implementation bizanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSURL *url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    [self.webView loadRequest:request];
+    NSURL *bizan_url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php"];
+    NSURLRequest *bizan_request = [NSURLRequest requestWithURL:bizan_url];
+    [self.webView loadRequest:bizan_request];
+
+
 }
 
 - (void)didReceiveMemoryWarning {

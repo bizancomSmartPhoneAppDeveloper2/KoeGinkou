@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import "WebViewController.h"
+
 
 
 @interface SecondViewController ()
@@ -28,6 +28,7 @@
     NSInteger bizan_number;
     NSInteger now_number;
 }
+
 
 - (void)viewDidLoad {
     rokuonStarting = NO;
@@ -137,6 +138,10 @@
     now_number = bizan_number;
     updateURL = @"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php";
     [self update];
+    
+    //webViewに遷移
+    bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
+    [self presentViewController:bizan_webView animated:YES completion:nil];
 
 }
 
@@ -153,6 +158,10 @@
     updateURL = @"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php";
     [self update];
 
+    //webViewに遷移
+    tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
+    [self presentViewController:tsurugisan_webView animated:YES completion:nil];
+    
 }
 
 - (IBAction)tourokuButton:(UIButton *)sender {
@@ -169,10 +178,10 @@
     now_number = number;
     [self update];
     
+    
     //webViewに遷移
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
     [self presentViewController:webView animated:YES completion:nil];
-
 }
 
 

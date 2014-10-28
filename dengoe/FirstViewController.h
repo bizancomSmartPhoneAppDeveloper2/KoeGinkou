@@ -17,7 +17,7 @@
 
 
 
-@interface FirstViewController : UIViewController<rokuonViewDelegate,CLLocationManagerDelegate,MKAnnotation,MKMapViewDelegate>
+@interface FirstViewController : UIViewController<CLLocationManagerDelegate,MKAnnotation,MKMapViewDelegate>
 
 @property CLLocationManager *locationManager;
 //緯度、経度の情報を格納するための変数

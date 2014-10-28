@@ -13,9 +13,6 @@
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 // ここに受け渡ししたい変数を宣言
-@property (nonatomic,retain) NSString *userName_send;
-@property (nonatomic,retain) NSString *date_send;
-
 
 @end
 

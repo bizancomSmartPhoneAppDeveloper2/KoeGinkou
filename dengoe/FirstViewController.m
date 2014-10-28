@@ -41,6 +41,7 @@
     MKCircle *circle;
     NSString *defaultUserName;
     NSString *defaultUserDate;
+    MKCoordinateRegion region;
 }
 
 @synthesize locationManager;
@@ -53,8 +54,6 @@
     longitude = 0;
     [self.map setDelegate: self];
     [self locationManagerMethod];
-    SecondViewController *rokuonView = self.parentViewController;
-    rokuonView.delegate =self;
     
     //配列を空で生成
     //nameArray  = [NSMutableArray array];
@@ -217,21 +216,24 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     //デリゲートを自分自身に設定
     self.map.delegate = self;
     NSLog(@"中心経度%f 中心緯度%f",latitude,longitude);
-    //latitude = 34.074642;
-    //longitude = 134.550764;
-    //latitude = 35.710000;
-    //longitude = 139.810000;
-    
     
     //地図の真ん中の位置を緯度と経度で設定
-    //co.latitude = 34.071369;
-    //co.longitude = 134.556196;
     co.latitude = latitude;
     co.longitude = longitude;
+    //MKCooredinateRegionの変数の初期化
+    region = self.map.region;
+    //マップが表示された時の中心の経度設定
+    region.center.longitude = co.longitude;
+    //マップが表示された時の中心の緯度設定
+    region.center.latitude = co.latitude;
+    //現在地から店の距離によってマップの縮尺度を設定(幅1km分にする)
+    //region.span.latitudeDelta = 1 / 111.2;
+    //region.span.longitudeDelta = 1 / 111.2;
+    //[self.map setRegion:region];
     
     
     //地図の縮尺を設定、coを中心に1000m四方で設定
-    self.map.region = MKCoordinateRegionMakeWithDistance(co, 1000, 1000);
+    self.map.region = MKCoordinateRegionMakeWithDistance(co, 100000, 100000);
     //区画内の建物表示プロパティ、初期値NO
     [self.map setShowsBuildings:YES];
     //コンビニなどランドマークの表示プロパティ、初期値NO
@@ -242,128 +244,63 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 }
 
 
--(void)didTouroku{
-}
-
-//-(void)QuerySearch{
-    //検索開始地点に新宿駅の座標を設定
-    //double latitude1 = 35.690921;
-    //double longitude1 = 139.700258;
-    //NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude1 longitude:longitude1];
-    
-    //設定した座標から5キロメートル内を検索
-    //NCMBQuery *geoQuery = [NCMBQuery queryWithClassName:@"Places"];
-    //[geoQuery whereKey:@"point" nearGeoPoint:geoPoint withinKilometers:5.0];
-    //[geoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error){
-        //if (!error) {
-            //成功後の処理
-            //NSLog(@"%@",geoQuery);
-        //}
-        //else{
-            //エラー処理
-           // NSLog(@"error");
-        //}
-    //}];
-    
-//}
-
-//-(void)getObject{
-   // NCMBQuery *query = [NCMBQuery queryWithClassName:@"Places"];
-    //[query whereKey:@"areaName" equalTo:@"新宿駅"];
-    //[query findObjectsInBackgroundWithBlock:^(NSArray *objs, NSError *error) {
-        //for (NCMBObject *obj in objs) {
-            //NSLog(@"%@", obj);
-            
-            // objectForKeyアクセス
-            //NSString *point = [obj objectForKey:@"point"];
-            //NSLog(@"point:%@", point)
-            //NSString *areaName = [obj objectForKey:@"areaName"];
-            // プロパティアクセス
-            //NSString *objectId = obj.objectId;
-            //NSString *areaName = Places.areaName;
-            //NSLog(@"areaName:%@,objectId:%@,point:%@",areaName, objectId, point);
-            // 再取得
-            //[obj refresh];
-        //}
-    //}];
-//}
-
-//-(void)createObjectAPI{
-   // NSString *areaName = @"新宿駅";
-    
-    //geoPointの生成
-    //double latitude0 = 35.690921;
-    //double longitude0 = 139.700258;
-    //NCMBGeoPoint *geoPoint = [NCMBGeoPoint geoPointWithLatitude:latitude0 longitude:longitude0];
-    
-    //geoPointの保存
-    //NCMBObject *obj = [NCMBObject objectWithClassName:@"Places"];
-    //[obj setObject:geoPoint forKey:@"point"];
-    //[obj setObject:areaName forKey:@"areaName"];
-    //[obj saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
-     //   if (!error) {
-            //成功後の処理
-       // }
-      //  else {
-            //エラー処理
-       // }
-    //}];
-    
-    //NSString *areaName1 = @"高田馬場駅";
-    
-    //geoPointの生成
-    //NCMBGeoPoint *geoPoint1 = [NCMBGeoPoint geoPoint];
-    //geoPoint1.latitude = 35.712285;
-    //geoPoint1.longitude = 139.703782;
-    
-    //geoPointの保存
-    //NCMBObject *obj1 = [NCMBObject objectWithClassName:@"Places"];
-    //[obj1 setObject:geoPoint1 forKey:@"point"];
-    //[obj1 setObject:areaName1 forKey:@"areaName"];
-    //[obj1 saveInBackgroundWithBlock:^(BOOL succeeded , NSError *error){
-        //if (!error) {
-            //成功後の処理
-        //}
-        //else {
-            //エラー処理
-        //}
-    //}];
-    
-    //[self QuerySearch];
-
-//}
-
 -(void)newAnnotation{
-        //デリゲートを自分自身に設定
-        self.map.delegate = self;
-        //緯度と経度情報を格納する変数の初期化(鳴門市文化会館に設定)
-        co.latitude = 34.071252;
-        co.longitude = 134.556152;
-        //coを元にsampleannotetion型の変数を生成
-        CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:co];
-        annotetion.title = @"文化センター　掲示板";
-        annotetion.subtitle = @"1件の伝声があります";
-        //MKCooredinateRegionの変数の初期化
-        MKCoordinateRegion region = self.map.region;
-        //マップが表示された時の中心の経度設定
-        region.center.longitude = co.longitude;
-        //マップが表示された時の中心の緯度設定
-        region.center.latitude = co.latitude;
+    //デリゲートを自分自身に設定
+    self.map.delegate = self;
+    
+    
+    NSInteger number;
+    NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
+    NSData *urldata = [NSData dataWithContentsOfURL:suburl];
+    NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
+    NSLog(@"徳島%@",numstr);
+    number = [numstr intValue];
+    
+    NSInteger bizan_number;
+    NSURL *bizan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_sub_listen_dengoe.php"];
+    NSData *bizan_urldata = [NSData dataWithContentsOfURL:bizan_suburl];
+    NSString *bizan_numstr = [[NSString alloc]initWithData:bizan_urldata encoding:NSUTF8StringEncoding];
+    NSLog(@"眉山%@",bizan_numstr);
+    bizan_number = [bizan_numstr intValue];
+    
+    NSInteger tsurugisan_number;
+    NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
+    NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
+    NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
+    NSLog(@"剣山%@",tsurugisan_numstr);
+    tsurugisan_number = [tsurugisan_numstr intValue];
+    
+    //緯度と経度情報を格納
+    co.latitude = 34.061101;
+    co.longitude = 134.516636;
+    //coを元にsampleannotetion型の変数を生成
+    CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:co];
+    annotetion.title = @"眉山：掲示板";
+    annotetion.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",bizan_number];
+    
+    
+    
         //緯度と経度情報を格納する変数の値を変更
-        co.latitude = 34.073456;
-        co.longitude = 134.54946;
+        co.latitude = 34.074642;
+        co.longitude = 134.550764;
         //coを元にannotetion型の2つめの変数を生成
         CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:co];
-        annotetion2.title = @"そごう　掲示板";
-        annotetion2.subtitle = @"1件の伝声があります";
+        annotetion2.title = @"徳島駅：掲示板";
+        annotetion2.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",number];
     
-        //現在地から店の距離によってマップの縮尺度を設定(幅1km分にする)
-        region.span.latitudeDelta = 1 / 111.2;
-        region.span.longitudeDelta = 1 / 111.2;
-        [self.map setRegion:region];
+        //緯度と経度情報を格納する変数の値を変更
+        co.latitude = 33.854063;
+        co.longitude = 134.094674;
+    //coを元にannotetion型の2つめの変数を生成
+    CustomAnnotation *annotetion3 = [[CustomAnnotation alloc]initwithCoordinate:co];
+    annotetion3.title = @"剣山：掲示板";
+    annotetion3.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",tsurugisan_number];
+    
         //2つアノテーションを追加
         [self.map addAnnotation:annotetion];
         [self.map addAnnotation:annotetion2];
+        [self.map addAnnotation:annotetion3];
+    
         //現在地を表示
         self.map.showsUserLocation = YES;
 }
@@ -467,9 +404,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     //デリゲートに保存したuserNameを取得する
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
     //userNameを表示
-    NSLog(@"入力された文字は%@",appDelegate.userName_send);
-    namelabel.text = [NSString stringWithFormat:@"%@\n%@",(appDelegate.userName_send),(appDelegate.date_send)];
-    defaultUserName = appDelegate.userName_send;
+    NSLog(@"入力された文字は%@");
+    namelabel.text = [NSString stringWithFormat:@"%@\n%@"];
     
     //ユーザが選択した都道府県のデータの保存
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

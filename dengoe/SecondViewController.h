@@ -11,14 +11,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
 
-@protocol rokuonViewDelegate<NSObject>//デリゲートすることを宣言
--(void)didTouroku;//デリゲートメソッド
-@end
 
 @interface SecondViewController : UIViewController<UITextFieldDelegate>
 - (IBAction)rokuonStart:(UIButton *)sender;
 - (IBAction)rokuonListen:(UIButton *)sender;
-@property id<rokuonViewDelegate> delegate;
+- (IBAction)bizantourokuButton:(UIButton *)sender;
+- (IBAction)tsurugisantourokuButton:(UIButton *)sender;
 
 - (IBAction)tourokuButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *rokuonStartStopImage;

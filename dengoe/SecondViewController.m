@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import "WebViewController.h"
 
 
 @interface SecondViewController ()
@@ -21,6 +22,11 @@
     NSInteger number;
     NSString *userNameString;
     NSString *filename;
+    NSString *path;
+    NSString *updateURL;
+    NSInteger tsurugisan_number;
+    NSInteger bizan_number;
+    NSInteger now_number;
 }
 
 - (void)viewDidLoad {
@@ -97,86 +103,9 @@
         NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                                  NSUserDomainMask,YES);
         NSString *documentDir = [filePaths objectAtIndex:0];
-        NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
-        
-        
-        
-        //パスからデータを取得
-        NSData *musicdata = [[NSData alloc]initWithContentsOfFile:path];
-        //ファイルをサーバーにアップするためのプログラムのURLを生成
-        NSURL *url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php"];
-        NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
-        NSData *urldata = [NSData dataWithContentsOfURL:suburl];
-        NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
-        NSLog(@"番号%@",numstr);
-        number = [numstr intValue];
-        NSLog(@"テーブルのカウント数%d",number);
-        //urlをもとにしたリクエストを生成
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-        //リクエストメッセージのbody部分を作るための変数
-        NSMutableData *body = [NSMutableData data];
-        //バウンダリ文字列(仕切線)を格納している変数
-        NSString *boundary = @"---------------------------168072824752491622650073";
-        //Content-typeヘッダに設定する情報を格納する変数
-        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-        //POST形式の通信を行うようにする
-        [request setHTTPMethod:@"POST"];
-        //bodyの最初にバウンダリ文字列(仕切線)を追加
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        //サーバー側に送るファイルの項目名をsample
-        
-        
-        [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
-        NSDate *date = [NSDate date];
-        self.dateString = [formatter stringFromDate:date];
-        //送るファイル名をdateと設定
-        [body appendData:[@"Content-Disposition: form-data; name=\"date\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
-        //現在日時の文字列データ追加
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", self.dateString] dataUsingEncoding:NSUTF8StringEncoding]];
-        //bodyの最初にバウンダリ文字列(仕切線)を追加
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        
-        //usernameを送信する
-        userNameString = @"さわだ";
-        //送るファイル名をusernameと設定
-        [body appendData:[@"Content-Disposition: form-data; name=\"username\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
-        //文字列データ追加
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", userNameString] dataUsingEncoding:NSUTF8StringEncoding]];
-        //bodyの最初にバウンダリ文字列(仕切線)を追加
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-
-        
-        
-        //サーバー側に送るファイルの項目名をsample
-        //送るファイル名をsaple.mp3と設定
-        number++;
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sample\"; filename=\"%dsample.mp3\"\r\n",number]  dataUsingEncoding:NSUTF8StringEncoding]];
-        filename = [NSString stringWithFormat:@"%dsample.mp3",number];
-        
-        NSLog(@"%d",number);
-        //送るファイルのデータのタイプを設定する情報を追加
-        [body appendData:[@"Content-Type: audio/mpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        //音楽ファイルのデータを追加
-        [body appendData:musicdata];
-        NSLog(@"録音のデータサイズ%dバイト",musicdata.length);
-        //最後にバウンダリ文字列を追加
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        //ヘッダContent-typeに情報を追加
-        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-        //リクエストのボディ部分に変数bodyをセット
-        [request setHTTPBody:body];
-        NSURLResponse *response;
-        NSError *err = nil;
-        //サーバーとの通信を行う
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-        //サーバーからのデータを文字列に変換
-        NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",datastring);
+        path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
+        //[self update];
     }
-    
 }
 
 - (IBAction)rokuonListen:(UIButton *)sender {
@@ -197,34 +126,139 @@
     [avPlayer play];
 }
 
-- (IBAction)tourokuButton:(UIButton *)sender {
-    //デリゲート？
-    //現在地を取得
-    //現在地にピンを立てて
-    //現在地ピンのアノケーションビューに録音再生ボタンと録音タイトルを表示
-    [self.delegate didTouroku];
-    NSLog(@"クリックされました");
+- (IBAction)bizantourokuButton:(UIButton *)sender {
+    NSLog(@"眉山掲示板へ登録クリックされました");
+    
+    NSURL *bizan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_sub_listen_dengoe.php"];
+    NSData *bizan_urldata = [NSData dataWithContentsOfURL:bizan_suburl];
+    NSString *bizan_numstr = [[NSString alloc]initWithData:bizan_urldata encoding:NSUTF8StringEncoding];
+    NSLog(@"眉山%@",bizan_numstr);
+    bizan_number = [bizan_numstr intValue];
+    now_number = bizan_number;
+    updateURL = @"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php";
+    [self update];
+
 }
+
+- (IBAction)tsurugisantourokuButton:(UIButton *)sender {
+    NSLog(@"剣山掲示板へ登録クリックされました");
+    
+    
+    NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
+    NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
+    NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
+    NSLog(@"剣山%@",tsurugisan_numstr);
+    tsurugisan_number = [tsurugisan_numstr intValue];
+    now_number = tsurugisan_number;
+    updateURL = @"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php";
+    [self update];
+
+}
+
+- (IBAction)tourokuButton:(UIButton *)sender {
+    NSLog(@"徳島掲示板へ登録クリックされました");
+    
+    NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
+    NSData *urldata = [NSData dataWithContentsOfURL:suburl];
+    NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
+    NSLog(@"番号%@",numstr);
+    number = [numstr intValue];
+    NSLog(@"徳島掲示板のテーブルのカウント数%d",number);
+
+    updateURL = @"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php";
+    now_number = number;
+    [self update];
+    
+    //webViewに遷移
+    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+    [self presentViewController:webView animated:YES completion:nil];
+
+}
+
 
 - (IBAction)userName:(UITextField *)sender {
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
     self.userName = self.myTextField.text;
     
-    //userNameを他クラスから参照するので、appに保存する
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
-    appDelegate.userName_send = self.userName; // デリゲートプロパティに値代入
+    return NO;
+}
+    
+
+    
+-(void)update{
+    
+    //パスからデータを取得
+    NSData *musicdata = [[NSData alloc]initWithContentsOfFile:path];
+    //ファイルをサーバーにアップするためのプログラムのURLを生成
+    NSURL *url = [NSURL URLWithString:updateURL];
+    //urlをもとにしたリクエストを生成
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    //リクエストメッセージのbody部分を作るための変数
+    NSMutableData *body = [NSMutableData data];
+    //バウンダリ文字列(仕切線)を格納している変数
+    NSString *boundary = @"---------------------------168072824752491622650073";
+    //Content-typeヘッダに設定する情報を格納する変数
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    //POST形式の通信を行うようにする
+    [request setHTTPMethod:@"POST"];
+    //bodyの最初にバウンダリ文字列(仕切線)を追加
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //サーバー側に送るファイルの項目名をsample
+    
+    
     [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
     NSDate *date = [NSDate date];
     self.dateString = [formatter stringFromDate:date];
-    NSLog(@"%@",self.dateString);
-    appDelegate.date_send = self.dateString;
-    return NO;
+    //送るファイル名をdateと設定
+    [body appendData:[@"Content-Disposition: form-data; name=\"date\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
+    //現在日時の文字列データ追加
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", self.dateString] dataUsingEncoding:NSUTF8StringEncoding]];
+    //bodyの最初にバウンダリ文字列(仕切線)を追加
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     
+    //usernameを送信する
+    userNameString = @"さわだ";
+    //送るファイル名をusernameと設定
+    [body appendData:[@"Content-Disposition: form-data; name=\"username\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
+    //文字列データ追加
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", userNameString] dataUsingEncoding:NSUTF8StringEncoding]];
+    //bodyの最初にバウンダリ文字列(仕切線)を追加
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
+    //サーバー側に送るファイルの項目名をsample
+    //送るファイル名をsaple.mp3と設定
+    now_number++;
+    
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sample\"; filename=\"%dsample.mp3\"\r\n",now_number]  dataUsingEncoding:NSUTF8StringEncoding]];
+    filename = [NSString stringWithFormat:@"%dsample.mp3",now_number];
+    
+    NSLog(@"%d",now_number);
+    //送るファイルのデータのタイプを設定する情報を追加
+    [body appendData:[@"Content-Type: audio/mpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    //音楽ファイルのデータを追加
+    [body appendData:musicdata];
+    NSLog(@"録音のデータサイズ%dバイト",musicdata.length);
+    //最後にバウンダリ文字列を追加
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //ヘッダContent-typeに情報を追加
+    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+    //リクエストのボディ部分に変数bodyをセット
+    [request setHTTPBody:body];
+    NSURLResponse *response;
+    NSError *err = nil;
+    //サーバーとの通信を行う
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    //サーバーからのデータを文字列に変換
+    NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",datastring);
 }
 @end

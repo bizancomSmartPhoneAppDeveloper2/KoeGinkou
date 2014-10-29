@@ -24,6 +24,9 @@
 @property NSString *userName;
 @property NSString *dateString;
 @property (weak, nonatomic) IBOutlet UILabel *labelONmike;
+@property (weak, nonatomic) IBOutlet UIButton *tokushimaTourokuImage;
+@property (weak, nonatomic) IBOutlet UIButton *bizanTourokuImage;
+@property (weak, nonatomic) IBOutlet UIButton *tsurugisanTourokuImage;
 
 @end
 

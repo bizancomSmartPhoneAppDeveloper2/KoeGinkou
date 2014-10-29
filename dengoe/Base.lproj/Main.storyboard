@@ -186,9 +186,12 @@
                     <tabBarItem key="tabBarItem" title="声を登録" image="second" id="cPa-gy-q4n"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="bizanTourokuImage" destination="aii-Tg-xoP" id="2ZO-qB-paz"/>
                         <outlet property="labelONmike" destination="HTj-KH-UOy" id="FcL-Xt-nO5"/>
                         <outlet property="myTextField" destination="T1z-VZ-yMS" id="haC-JE-djP"/>
                         <outlet property="rokuonStartStopImage" destination="5yQ-ma-fAy" id="r6p-jF-fTB"/>
+                        <outlet property="tokushimaTourokuImage" destination="mdK-h7-IzF" id="vxS-Gw-YJS"/>
+                        <outlet property="tsurugisanTourokuImage" destination="Rv1-Oi-AFZ" id="x6r-Jy-TgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

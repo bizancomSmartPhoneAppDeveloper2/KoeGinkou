@@ -119,7 +119,7 @@
             //anotetionとpinを用いて値を代入
             av = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
             //表示する画像を設定
-            av.image = [UIImage imageNamed:@"hitsuji.png"];
+            av.image = [UIImage imageNamed:@"design_img_f_1402687_s.png"];
             //ピンをクリックしたときに情報を表示するようにする
             av.canShowCallout = YES;
         }
@@ -412,6 +412,9 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
             NSLog(@"%@見つからないです",region.identifier);
             break;
     }
+    // グローバル変数に保存
+    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    delegate.didRejon = inRejon;
 }
 
 //ジオフェンス監視（入ったとき呼ばれるメソッド）

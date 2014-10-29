@@ -29,6 +29,7 @@
     NSInteger bizan_number;
     NSInteger now_number;
     NSMutableArray *inRejon;
+    NSMutableArray *buttonTitleArray;
 }
 
 
@@ -36,12 +37,27 @@
     rokuonStarting = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.tokushimaTourokuImage.hidden = YES;
+    self.bizanTourokuImage.hidden = YES;
+    self.tsurugisanTourokuImage.hidden = YES;
+    
     self.myTextField.delegate = self;
     self.labelONmike.hidden = NO;
     number = 0;
     
-    // グローバル変数に保存
-    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    //配列を空で生成
+    inRejon = [NSMutableArray array];
+    
+    //デリゲートに保存したを取得する
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
+    //imageviewの画像をimageに設定
+    inRejon = appDelegate.didRejon;
+    [self rokuonStartHidden];
+    
+    buttonTitleArray = [NSMutableArray array];
+    buttonTitleArray =
+    [NSMutableArray arrayWithObjects:@"徳島の掲示板", @"眉山の掲示板", @"剣山の掲示板", nil];
+    
     
 }
 
@@ -330,5 +346,23 @@
     //サーバーからのデータを文字列に変換
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@",datastring);
+}
+
+-(void)rokuonStartHidden{
+    //領域内のボタンが押された場合はWebViewに遷移
+    for (int i = 0; i < inRejon.count; i++) {
+        NSLog(@"%@",[inRejon objectAtIndex:i]);
+    
+    if ([inRejon containsObject:buttonTitleArray[i]]) {
+        if ([buttonTitleArray[i] isEqualToString:@"徳島の掲示板"]) {
+            self.tokushimaTourokuImage.hidden = NO;
+        }else if ([buttonTitleArray[i] isEqualToString:@"眉山の掲示板"]) {
+            self.bizanTourokuImage.hidden = NO;
+        }else if ([buttonTitleArray[i] isEqualToString:@"剣山の掲示板"]) {
+            self.tsurugisanTourokuImage.hidden = NO;
+        }
+    }
+    }
+    
 }
 @end

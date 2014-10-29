@@ -19,6 +19,7 @@
 		07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0EA19F5F1DC00BB7759 /* Images.xcassets */; };
 		07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BED0EC19F5F1DC00BB7759 /* LaunchScreen.xib */; };
 		07BED0FA19F5F1DD00BB7759 /* dengoeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0F919F5F1DD00BB7759 /* dengoeTests.m */; };
+		07CD82971A00C29400CBFD78 /* design_img_f_1402687_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CD82961A00C29400CBFD78 /* design_img_f_1402687_s.png */; };
 		07ECD37319F5F35D00EF8EBB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37219F5F35D00EF8EBB /* AudioToolbox.framework */; };
 		07ECD37519F5F43500EF8EBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37419F5F43500EF8EBB /* AVFoundation.framework */; };
 		07ECD37719F5F7B700EF8EBB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD37619F5F7B700EF8EBB /* CoreLocation.framework */; };
@@ -68,6 +69,7 @@
 		07BED0F319F5F1DD00BB7759 /* dengoeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dengoeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BED0F819F5F1DD00BB7759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BED0F919F5F1DD00BB7759 /* dengoeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dengoeTests.m; sourceTree = "<group>"; };
+		07CD82961A00C29400CBFD78 /* design_img_f_1402687_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = design_img_f_1402687_s.png; sourceTree = "<group>"; };
 		07ECD37219F5F35D00EF8EBB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		07ECD37419F5F43500EF8EBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		07ECD37619F5F7B700EF8EBB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -163,6 +165,7 @@
 		07BED0DA19F5F1DC00BB7759 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07CD82961A00C29400CBFD78 /* design_img_f_1402687_s.png */,
 				07ECD3A019F7566700EF8EBB /* hitsuji.png */,
 				07ECD38719F632A700EF8EBB /* denngonn .png */,
 				07ECD38519F6094900EF8EBB /* saisei.png */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BED0E919F5F1DC00BB7759 /* Main.storyboard in Resources */,
+				07CD82971A00C29400CBFD78 /* design_img_f_1402687_s.png in Resources */,
 				07ECD38619F6094900EF8EBB /* saisei.png in Resources */,
 				07ECD38219F5FE6700EF8EBB /* close_pink.gif in Resources */,
 				07ECD38819F632A700EF8EBB /* denngonn .png in Resources */,

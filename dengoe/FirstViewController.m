@@ -50,6 +50,8 @@
     CLRegion *grRegionTokushimaeki;
     CLRegion *grRegionBizan;
     CLRegion *grRegionTsurugisan;
+    NSMutableArray *inRejon;
+    NSString *nsstringInRejon;
 }
 
 @synthesize locationManager;
@@ -68,7 +70,7 @@
 
     
     //配列を空で生成
-    //nameArray  = [NSMutableArray array];
+    inRejon = [NSMutableArray array];
     
     // 200mの範囲円を追加
     circleTokushimaeki = [MKCircle circleWithCenterCoordinate:coTokushimaeki radius: 200.0];
@@ -78,13 +80,13 @@
     //[self defaultMapSettei];
     CLLocationDistance radiusOnMeter = 200.0;
     
-    grRegionTokushimaeki = [[CLRegion alloc] initCircularRegionWithCenter:coTokushimaeki radius:radiusOnMeter identifier:@"徳島駅"];
+    grRegionTokushimaeki = [[CLRegion alloc] initCircularRegionWithCenter:coTokushimaeki radius:radiusOnMeter identifier:@"徳島駅の掲示板"];
     [self.locationManager startMonitoringForRegion:grRegionTokushimaeki];
     
-    grRegionBizan = [[CLRegion alloc] initCircularRegionWithCenter:coBizan radius:radiusOnMeter identifier:@"眉山"];
+    grRegionBizan = [[CLRegion alloc] initCircularRegionWithCenter:coBizan radius:radiusOnMeter identifier:@"眉山の掲示板"];
     [self.locationManager startMonitoringForRegion:grRegionBizan];
     
-    grRegionTsurugisan = [[CLRegion alloc] initCircularRegionWithCenter:coTsurugisan radius:radiusOnMeter identifier:@"剣山"];
+    grRegionTsurugisan = [[CLRegion alloc] initCircularRegionWithCenter:coTsurugisan radius:radiusOnMeter identifier:@"剣山の掲示板"];
     [self.locationManager startMonitoringForRegion:grRegionTsurugisan];
 
     
@@ -146,6 +148,13 @@
 //アノテーションのコールアウトに追加したボタンがタップされるとこのメソッドが呼ばれる
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
+    //領域外のボタンが押された場合は何も動作しない
+    //領域内のボタンが押された場合はWebViewに遷移
+    for (int i = 0; i < inRejon.count; i++) {
+        NSLog(@"%@%@",view.annotation.title,[inRejon objectAtIndex:i]);}
+    
+    if ([inRejon containsObject:view.annotation.title]) {
+        NSLog(@"入ってます");
     //webViewに遷移
     WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
     [self presentViewController:webView animated:YES completion:nil];
@@ -154,6 +163,15 @@
     NSLog(@"title: %@", view.annotation.title);
     NSLog(@"subtitle: %@", view.annotation.subtitle);
     NSLog(@"coord: %f, %f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude);
+    }else{
+        [[[UIAlertView alloc] initWithTitle:@"領域外です"
+                                    message:@"領域外のため只今閲覧・投稿できません。"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+    }
+    
+    
 }
 
 -(void)subViewClose:(UIButton*)stampPanelCloseBtn{
@@ -305,7 +323,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     coBizan.longitude = 134.516636;
     //coを元にsampleannotetion型の変数を生成
     CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:coBizan];
-    annotetion.title = @"眉山：掲示板";
+    annotetion.title = @"眉山の掲示板";
     annotetion.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",bizan_number];
     
     
@@ -315,7 +333,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         coTokushimaeki.longitude = 134.550764;
         //coを元にannotetion型の2つめの変数を生成
         CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:coTokushimaeki];
-        annotetion2.title = @"徳島駅：掲示板";
+        annotetion2.title = @"徳島駅の掲示板";
         annotetion2.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",number];
     
         //緯度と経度情報を格納する変数の値を変更
@@ -323,7 +341,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
         coTsurugisan.longitude = 134.094674;
     //coを元にannotetion型の2つめの変数を生成
     CustomAnnotation *annotetion3 = [[CustomAnnotation alloc]initwithCoordinate:coTsurugisan];
-    annotetion3.title = @"剣山：掲示板";
+    annotetion3.title = @"剣山の掲示板";
     annotetion3.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",tsurugisan_number];
     
         //2つアノテーションを追加
@@ -363,6 +381,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     [self.locationManager requestStateForRegion:region];
 }
 
+//最初に地図を表示した時に領域内にいるのかいないのか
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
     
     switch (state) {
@@ -373,6 +392,13 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles: nil]show];
+            //領域内の掲示板名を配列に格納
+            [inRejon addObject:region.identifier];
+            for (int i = 0; i < inRejon.count; i++) {
+                nsstringInRejon = [inRejon objectAtIndex:i];
+                NSLog(@"inRejonの中身は%@",nsstringInRejon);
+            }
+
             break;
         case CLRegionStateOutside:
             NSLog(@"%@は領域外です",region.identifier);

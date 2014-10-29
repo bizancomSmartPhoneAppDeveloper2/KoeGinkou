@@ -97,6 +97,13 @@
     //録音状態であるかどうか
     else if(rokuonStarting == YES){
         self.rokuonStartStopImage.alpha = 0.3;
+        
+        [[[UIAlertView alloc] initWithTitle:@"完了"
+                                    message:@"正常に録音が完了しました。"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+
 
         //録音をやめる
         [avRecorder stop];
@@ -128,60 +135,88 @@
 }
 
 - (IBAction)bizantourokuButton:(UIButton *)sender {
-    NSLog(@"眉山掲示板へ登録クリックされました");
+    if (userNameString == nil) {
+        [[[UIAlertView alloc] initWithTitle:@"エラー"
+                                    message:@"登録文を入力してください"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+        
+    }else {
     
-    NSURL *bizan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_sub_listen_dengoe.php"];
-    NSData *bizan_urldata = [NSData dataWithContentsOfURL:bizan_suburl];
-    NSString *bizan_numstr = [[NSString alloc]initWithData:bizan_urldata encoding:NSUTF8StringEncoding];
-    NSLog(@"眉山%@",bizan_numstr);
-    bizan_number = [bizan_numstr intValue];
-    now_number = bizan_number;
-    updateURL = @"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php";
-    [self update];
+        NSLog(@"眉山掲示板へ登録クリックされました");
     
-    //webViewに遷移
-    bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
-    [self presentViewController:bizan_webView animated:YES completion:nil];
-
+        NSURL *bizan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_sub_listen_dengoe.php"];
+        NSData *bizan_urldata = [NSData dataWithContentsOfURL:bizan_suburl];
+        NSString *bizan_numstr = [[NSString alloc]initWithData:bizan_urldata encoding:NSUTF8StringEncoding];
+        NSLog(@"眉山%@",bizan_numstr);
+        bizan_number = [bizan_numstr intValue];
+        now_number = bizan_number;
+        updateURL = @"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php";
+        [self update];
+    
+        //webViewに遷移
+        bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
+        [self presentViewController:bizan_webView animated:YES completion:nil];
+    }
 }
 
 - (IBAction)tsurugisantourokuButton:(UIButton *)sender {
-    NSLog(@"剣山掲示板へ登録クリックされました");
+    if (userNameString == nil) {
+        [[[UIAlertView alloc] initWithTitle:@"エラー"
+                                    message:@"登録文を入力してください"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+        
+    }else {
+    
+        NSLog(@"剣山掲示板へ登録クリックされました");
     
     
-    NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
-    NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
-    NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
-    NSLog(@"剣山%@",tsurugisan_numstr);
-    tsurugisan_number = [tsurugisan_numstr intValue];
-    now_number = tsurugisan_number;
-    updateURL = @"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php";
-    [self update];
+        NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
+        NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
+        NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
+        NSLog(@"剣山%@",tsurugisan_numstr);
+        tsurugisan_number = [tsurugisan_numstr intValue];
+        now_number = tsurugisan_number;
+        updateURL = @"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php";
+        [self update];
 
-    //webViewに遷移
-    tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
-    [self presentViewController:tsurugisan_webView animated:YES completion:nil];
-    
+        //webViewに遷移
+        tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
+        [self presentViewController:tsurugisan_webView animated:YES completion:nil];
+    }
 }
 
 - (IBAction)tourokuButton:(UIButton *)sender {
-    NSLog(@"徳島掲示板へ登録クリックされました");
+    if (userNameString == nil) {
+        [[[UIAlertView alloc] initWithTitle:@"エラー"
+                                    message:@"登録文を入力してください"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+        
+    }else {
     
-    NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
-    NSData *urldata = [NSData dataWithContentsOfURL:suburl];
-    NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
-    NSLog(@"番号%@",numstr);
-    number = [numstr intValue];
-    NSLog(@"徳島掲示板のテーブルのカウント数%d",number);
+        NSLog(@"徳島掲示板へ登録クリックされました");
+    
+        NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
+        NSData *urldata = [NSData dataWithContentsOfURL:suburl];
+        NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
+        NSLog(@"番号%@",numstr);
+        number = [numstr intValue];
+        NSLog(@"徳島掲示板のテーブルのカウント数%d",number);
 
-    updateURL = @"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php";
-    now_number = number;
-    [self update];
+        updateURL = @"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php";
+        now_number = number;
+        [self update];
     
     
-    //webViewに遷移
-    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
-    [self presentViewController:webView animated:YES completion:nil];
+        //webViewに遷移
+        WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+        [self presentViewController:webView animated:YES completion:nil];
+    }
 }
 
 
@@ -191,8 +226,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
-    self.userName = self.myTextField.text;
-    
+    userNameString = self.myTextField.text;
+    NSLog(@"%@",userNameString);
     return NO;
 }
     
@@ -232,8 +267,6 @@
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     
-    //usernameを送信する
-    userNameString = @"さわだ";
     //送るファイル名をusernameと設定
     [body appendData:[@"Content-Disposition: form-data; name=\"username\"\r\n\r\n"  dataUsingEncoding:NSUTF8StringEncoding]];
     //文字列データ追加

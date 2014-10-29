@@ -62,9 +62,9 @@
     circle = [MKCircle circleWithCenterCoordinate:co radius: 500.0];
     //[self getObject];
     //[self defaultMapSettei];
-    CLLocationDistance radiusOnMeter = 100.0;
+    CLLocationDistance radiusOnMeter = 200.0;
     
-    CLRegion *grRegion = [[CLRegion alloc] initCircularRegionWithCenter:co radius:radiusOnMeter identifier:@"そごう"];
+    CLRegion *grRegion = [[CLRegion alloc] initCircularRegionWithCenter:co radius:radiusOnMeter identifier:@"徳島駅"];
     [self.locationManager startMonitoringForRegion:grRegion];
     
     //ユーザが選択した都道府県があればそれをデフォルトとして表示する、保存されている都道府県を取り出してラベルに表示
@@ -212,6 +212,15 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 
 }
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    [[[UIAlertView alloc] initWithTitle:@"エラー"
+                                message:@"位置情報が取得できませんでした。"
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles: nil]show];
+    
+}
+
 -(void)defaultMapSettei{
     //デリゲートを自分自身に設定
     self.map.delegate = self;
@@ -344,80 +353,6 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
 }
 
--(void)createSubView{
-    //CustomAnnotation型で生成(そうしないとopenやcloseなどが参照できないから)
-    //CustomAnnotation *pin = view.annotation;
-    // 表示view生成
-    subview = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 400)];
-    subview.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:subview];
-    //UIImage *denngonn_image = [UIImage imageNamed:@"denngonn.png"];
-    //UIImageView *imageview = [[UIImageView alloc]initWithImage:denngonn_image];
-    //[subview addSubview:imageview];
-    
-    // 表示viewの、クローズボタンを生成
-    UIButton *subviewClose = [[UIButton alloc] initWithFrame:CGRectMake(265, 10, 50, 25)];
-    //subviewClose.backgroundColor = [UIColor blueColor];
-    UIImage *img_close = [UIImage imageNamed:@"close_pink.gif"];  // ボタンにする画像を生成する
-    [subviewClose setBackgroundImage:img_close forState:UIControlStateNormal];  // 画像をセットする
-    [subviewClose addTarget:self action:@selector(subViewClose:) forControlEvents:UIControlEventTouchUpInside];
-    [subview addSubview:subviewClose];
-    [subview addSubview:namelabel];
-    [subview addSubview:addresslabel];
-    
-    //現在地ピンのアノケーションビューに録音再生ボタンと録音タイトルを生成
-    UIButton *subview_ListenButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 20, 40, 40)];
-    //subviewClose.backgroundColor = [UIColor blueColor];
-    UIImage *img = [UIImage imageNamed:@"saisei.png"];  // ボタンにする画像を生成する
-    [subview_ListenButton setBackgroundImage:img forState:UIControlStateNormal];  // 画像をセットする
-    [subview_ListenButton addTarget:self action:@selector(subview_Listen:) forControlEvents:UIControlEventTouchUpInside];
-    [subview addSubview:subview_ListenButton];
-    
-    [subview addSubview:namelabel];
-    //[subview addSubview:addresslabel];
-    
-    // annotationView.annotation でどのアノテーションか判定可能
-    //NSLog(@"annotationView annotation is %@", view.annotation);
-    // アノテーションバルーンのcoordinate(リバースジオコーディングするときの情報)
-    //NSLog(@"annotationView coordinate is %f", view.annotation.coordinate.latitude); NSLog(@"annotationView coordinate is %f", view.annotation.coordinate.longitude);
-    //NSLog(@"annotationView title is %@", view.annotation.title); // アノテーションバルーンのtitle
-    //NSLog(@" annotationView subtitle is %@", view.annotation.subtitle); // アノテーションバルーンのsubtitle
-    
-    //ラベル追加
-    namelabel = [[UILabel alloc] init];
-    namelabel.frame = CGRectMake(20, 10, 200, 60);
-    namelabel.numberOfLines = 2;
-    namelabel.backgroundColor = [UIColor whiteColor];
-    namelabel.textColor = [UIColor blackColor];
-    namelabel.font = [UIFont fontWithName:@"AppleGothic" size:16];
-    //NSLog(@"ラベルは%@",nameArray[i]);
-    
-    //NSLog(@"ラベル配列の要素は%ld個",namelabelArray.count);
-    
-    //ラベル追加
-    //addresslabel = [[UILabel alloc] init];
-    //addresslabel.frame = CGRectMake(10, 35, 260, 30);
-    //addresslabel.backgroundColor = [UIColor whiteColor];
-    //addresslabel.textColor = [UIColor blackColor];
-    //addresslabel.font = [UIFont fontWithName:@"AppleGothic" size:13];
-    
-    //デリゲートに保存したuserNameを取得する
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
-    //userNameを表示
-    NSLog(@"入力された文字は%@");
-    namelabel.text = [NSString stringWithFormat:@"%@\n%@"];
-    
-    //ユーザが選択した都道府県のデータの保存
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:defaultUserName forKey:@"initialLetters"];
-    
-    //ユーザが選択した都道府県に対応するのURLの保存
-    NSUserDefaults *defaults_1 = [NSUserDefaults standardUserDefaults];
-    [defaults_1 setObject:defaultUserDate forKey:@"initialLetters_1"];
-    //addresslabel.text = (@"%@",view.annotation.subtitle);
-    //NSLog(@"オープン時間:%@",pin.open);
-    //NSLog(@"閉店時間%@",pin.close);
-}
 
 - (IBAction)goBackHome:(UIStoryboardSegue *)segue{
 }

@@ -18,6 +18,9 @@
     CLLocationDegrees latitude;
     CLLocationDegrees longitude;
     CLLocationCoordinate2D co;
+    CLLocationCoordinate2D coTokushimaeki;
+    CLLocationCoordinate2D coBizan;
+    CLLocationCoordinate2D coTsurugisan;
     double dbLat;
     double dbLng;
     NSString *nsstringlat;
@@ -38,10 +41,15 @@
     NSInteger buttontag;
     AVAudioSession *audioSession;
     AVAudioPlayer *avPlayer;
-    MKCircle *circle;
+    MKCircle *circleTokushimaeki;
+    MKCircle *circleBizan;
+    MKCircle *circleTsurugisan;
     NSString *defaultUserName;
     NSString *defaultUserDate;
-    MKCoordinateRegion region;
+    MKCoordinateRegion regionMap;
+    CLRegion *grRegionTokushimaeki;
+    CLRegion *grRegionBizan;
+    CLRegion *grRegionTsurugisan;
 }
 
 @synthesize locationManager;
@@ -54,18 +62,31 @@
     longitude = 0;
     [self.map setDelegate: self];
     [self locationManagerMethod];
+    [self.locationManager startMonitoringForRegion:grRegionTokushimaeki];
+    [self.locationManager startMonitoringForRegion:grRegionBizan];
+    [self.locationManager startMonitoringForRegion:grRegionTsurugisan];
+
     
     //配列を空で生成
     //nameArray  = [NSMutableArray array];
     
-    // 500mの範囲円を追加
-    circle = [MKCircle circleWithCenterCoordinate:co radius: 500.0];
+    // 200mの範囲円を追加
+    circleTokushimaeki = [MKCircle circleWithCenterCoordinate:coTokushimaeki radius: 200.0];
+    circleBizan = [MKCircle circleWithCenterCoordinate:coBizan radius: 200.0];
+    circleTsurugisan = [MKCircle circleWithCenterCoordinate:coTsurugisan radius: 200.0];
     //[self getObject];
     //[self defaultMapSettei];
     CLLocationDistance radiusOnMeter = 200.0;
     
-    CLRegion *grRegion = [[CLRegion alloc] initCircularRegionWithCenter:co radius:radiusOnMeter identifier:@"徳島駅"];
-    [self.locationManager startMonitoringForRegion:grRegion];
+    grRegionTokushimaeki = [[CLRegion alloc] initCircularRegionWithCenter:coTokushimaeki radius:radiusOnMeter identifier:@"徳島駅"];
+    [self.locationManager startMonitoringForRegion:grRegionTokushimaeki];
+    
+    grRegionBizan = [[CLRegion alloc] initCircularRegionWithCenter:coBizan radius:radiusOnMeter identifier:@"眉山"];
+    [self.locationManager startMonitoringForRegion:grRegionBizan];
+    
+    grRegionTsurugisan = [[CLRegion alloc] initCircularRegionWithCenter:coTsurugisan radius:radiusOnMeter identifier:@"剣山"];
+    [self.locationManager startMonitoringForRegion:grRegionTsurugisan];
+
     
     //ユーザが選択した都道府県があればそれをデフォルトとして表示する、保存されている都道府県を取り出してラベルに表示
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -207,8 +228,9 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
           location.coordinate.longitude);
     latitude = location.coordinate.latitude;
     longitude = location.coordinate.longitude;
-    [self.locationManager stopUpdatingLocation];
     [self defaultMapSettei];
+    [self.locationManager stopUpdatingLocation];
+
 
 }
 
@@ -230,11 +252,11 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     co.latitude = latitude;
     co.longitude = longitude;
     //MKCooredinateRegionの変数の初期化
-    region = self.map.region;
+    //regionMap = self.map.region;
     //マップが表示された時の中心の経度設定
-    region.center.longitude = co.longitude;
+    //regionMap.center.longitude = co.longitude;
     //マップが表示された時の中心の緯度設定
-    region.center.latitude = co.latitude;
+    //regionMap.center.latitude = co.latitude;
     //現在地から店の距離によってマップの縮尺度を設定(幅1km分にする)
     //region.span.latitudeDelta = 1 / 111.2;
     //region.span.longitudeDelta = 1 / 111.2;
@@ -256,7 +278,6 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 -(void)newAnnotation{
     //デリゲートを自分自身に設定
     self.map.delegate = self;
-    
     
     NSInteger number;
     NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
@@ -280,28 +301,28 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     tsurugisan_number = [tsurugisan_numstr intValue];
     
     //緯度と経度情報を格納
-    co.latitude = 34.061101;
-    co.longitude = 134.516636;
+    coBizan.latitude = 34.061101;
+    coBizan.longitude = 134.516636;
     //coを元にsampleannotetion型の変数を生成
-    CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:co];
+    CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:coBizan];
     annotetion.title = @"眉山：掲示板";
     annotetion.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",bizan_number];
     
     
     
         //緯度と経度情報を格納する変数の値を変更
-        co.latitude = 34.074642;
-        co.longitude = 134.550764;
+        coTokushimaeki.latitude = 34.074642;
+        coTokushimaeki.longitude = 134.550764;
         //coを元にannotetion型の2つめの変数を生成
-        CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:co];
+        CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:coTokushimaeki];
         annotetion2.title = @"徳島駅：掲示板";
         annotetion2.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",number];
     
         //緯度と経度情報を格納する変数の値を変更
-        co.latitude = 33.854063;
-        co.longitude = 134.094674;
+        coTsurugisan.latitude = 33.854063;
+        coTsurugisan.longitude = 134.094674;
     //coを元にannotetion型の2つめの変数を生成
-    CustomAnnotation *annotetion3 = [[CustomAnnotation alloc]initwithCoordinate:co];
+    CustomAnnotation *annotetion3 = [[CustomAnnotation alloc]initwithCoordinate:coTsurugisan];
     annotetion3.title = @"剣山：掲示板";
     annotetion3.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",tsurugisan_number];
     
@@ -317,14 +338,12 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 //オーバーレイを作成
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay
 {
-    
     MKCircle* circle = overlay;
     MKCircleView* circleOverlayView =   [[MKCircleView alloc] initWithCircle:circle];
     circleOverlayView.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
     circleOverlayView.lineWidth = 4.;
     circleOverlayView.fillColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.35];
     return circleOverlayView;
-    
 }
 
 //ジオフェンス設定
@@ -338,19 +357,48 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     return YES;
 }
 
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
+{
+    NSLog(@"didStartMonitoringForRegion:%@", region.identifier);
+    [self.locationManager requestStateForRegion:region];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
+    
+    switch (state) {
+        case CLRegionStateInside:
+            NSLog(@"%@は領域内です",region.identifier);
+            [[[UIAlertView alloc] initWithTitle:(@"%@掲示板",region.identifier)
+                                        message:@"掲示板への投稿と閲覧が可能です。"
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil]show];
+            break;
+        case CLRegionStateOutside:
+            NSLog(@"%@は領域外です",region.identifier);
+            break;
+        case CLRegionStateUnknown:
+            NSLog(@"%@見つからないです",region.identifier);
+            break;
+        default:
+            NSLog(@"%@見つからないです",region.identifier);
+            break;
+    }
+}
+
 //ジオフェンス監視（入ったとき呼ばれるメソッド）
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"ジオフェンス領域%@に入りました",region.identifier);
-    [self.map addOverlay:circle];
+    
+        NSLog(@"ジオフェンス領域%@に入りました",region.identifier);
+        //[self.map addOverlay:circleTokushimaeki];
 }
 
 //ジオフェンス監視（出たとき呼ばれるメソッド）
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSLog(@"ジオフェンス領域%@から出ました",region.identifier);
-    [self.map removeOverlay:circle];
-    
+        NSLog(@"ジオフェンス領域%@から出ました",region.identifier);
+        //[self.map removeOverlay:circleTsurugisan];
 }
 
 

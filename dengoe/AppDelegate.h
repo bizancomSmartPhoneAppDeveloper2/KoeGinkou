@@ -13,11 +13,13 @@
 @class bizanViewController;
 @class tsurugisanViewController;
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
+@interface AppDelegate : UIResponder<UIApplicationDelegate>{
+        // グローバル変数
+    NSMutableArray *didRejon;
+}
 @property (strong, nonatomic) UIWindow *window;
 // ここに受け渡ししたい変数を宣言
-@property (strong, nonatomic) NSString *send_URL;
-
+@property (nonatomic, retain) NSMutableArray *didRejon;
 
 @end
 

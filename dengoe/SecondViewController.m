@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import "AppDelegate.h"
 
 
 
@@ -27,6 +28,7 @@
     NSInteger tsurugisan_number;
     NSInteger bizan_number;
     NSInteger now_number;
+    NSMutableArray *inRejon;
 }
 
 
@@ -37,6 +39,10 @@
     self.myTextField.delegate = self;
     self.labelONmike.hidden = NO;
     number = 0;
+    
+    // グローバル変数に保存
+    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    
 }
 
 - (void)didReceiveMemoryWarning {

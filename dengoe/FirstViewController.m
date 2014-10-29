@@ -8,8 +8,8 @@
 
 #import "FirstViewController.h"
 #import "CustomAnnotation.h"
-//#import <NCMB/NCMB.h>
 #import "WebViewController.h"
+#import "AppDelegate.h"
 
 @interface FirstViewController ()
 @end
@@ -394,11 +394,13 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                               otherButtonTitles: nil]show];
             //領域内の掲示板名を配列に格納
             [inRejon addObject:region.identifier];
+
+
+            
             for (int i = 0; i < inRejon.count; i++) {
                 nsstringInRejon = [inRejon objectAtIndex:i];
                 NSLog(@"inRejonの中身は%@",nsstringInRejon);
             }
-
             break;
         case CLRegionStateOutside:
             NSLog(@"%@は領域外です",region.identifier);

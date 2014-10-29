@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <NCMB/NCMB.h>
 
 @interface AppDelegate ()
 
@@ -18,9 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NCMB setApplicationKey:@"e6ba1db5b7c8e52c7cfbf7ba245702ef8ff3fdcba6c6654ce82479d4196048b1" clientKey:@"7285a92deb165ca053373a80f277895e3a44fdd862a283e7a5aaa30d7a667dd9"];
-    
-            return YES;
+    return YES;
     
     
 }

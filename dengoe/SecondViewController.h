@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 @property NSString *userName;
 @property NSString *dateString;
+@property (weak, nonatomic) IBOutlet UILabel *labelONmike;
 
 @end
 

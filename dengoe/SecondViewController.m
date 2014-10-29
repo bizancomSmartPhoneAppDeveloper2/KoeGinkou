@@ -35,6 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.myTextField.delegate = self;
+    self.labelONmike.hidden = NO;
     number = 0;
 }
 
@@ -46,6 +47,7 @@
 - (IBAction)rokuonStart:(UIButton *)sender {
     //録音状態でないかどうか
     if (rokuonStarting == NO) {
+        self.labelONmike.hidden = YES;
         self.rokuonStartStopImage.alpha = 1;
         audioSession = [AVAudioSession sharedInstance];
         NSError *error = nil;
@@ -96,6 +98,7 @@
     }
     //録音状態であるかどうか
     else if(rokuonStarting == YES){
+        self.labelONmike.hidden = NO;
         self.rokuonStartStopImage.alpha = 0.3;
         
         [[[UIAlertView alloc] initWithTitle:@"完了"
@@ -154,6 +157,13 @@
         now_number = bizan_number;
         updateURL = @"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php";
         [self update];
+        
+        [[[UIAlertView alloc] initWithTitle:@"完了"
+                                    message:@"正常にアップロードされました。"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+
     
         //webViewに遷移
         bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
@@ -182,6 +192,13 @@
         now_number = tsurugisan_number;
         updateURL = @"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php";
         [self update];
+        
+        [[[UIAlertView alloc] initWithTitle:@"完了"
+                                    message:@"正常にアップロードされました。"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+
 
         //webViewに遷移
         tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
@@ -212,7 +229,12 @@
         now_number = number;
         [self update];
     
-    
+        [[[UIAlertView alloc] initWithTitle:@"完了"
+                                    message:@"正常にアップロードされました。"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil]show];
+        
         //webViewに遷移
         WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
         [self presentViewController:webView animated:YES completion:nil];

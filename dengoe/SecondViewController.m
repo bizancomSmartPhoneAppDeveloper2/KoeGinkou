@@ -52,13 +52,13 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
     //imageviewの画像をimageに設定
     inRejon = appDelegate.didRejon;
-    [self rokuonStartHidden];
+    
     
     buttonTitleArray = [NSMutableArray array];
     buttonTitleArray =
     [NSMutableArray arrayWithObjects:@"徳島の掲示板", @"眉山の掲示板", @"剣山の掲示板", nil];
     
-    
+    [self rokuonStartHidden];
 }
 
 - (void)didReceiveMemoryWarning {

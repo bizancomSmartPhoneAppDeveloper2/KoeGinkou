@@ -353,24 +353,20 @@
     for (int i = 0; i < inRejon.count; i++) {
         NSLog(@"%daaaaaa%@%@",(inRejon.count),[inRejon objectAtIndex:0],[inRejon objectAtIndex:1]);
     
-        if ([inRejon containsObject:buttonTitleArray[i]]) {
-            if ([buttonTitleArray[i] isEqualToString:@"徳島駅の掲示板"]) {
-                NSLog(@"aaaaa");
+        if ([inRejon containsObject:@"徳島駅の掲示板"]) {
                 self.tokushimaTourokuImage.hidden = NO;
-            }else{
-                nil;
-            }
-            if ([buttonTitleArray[i] isEqualToString:@"眉山の掲示板"]) {
-                self.bizanTourokuImage.hidden = NO;
-            }else{
-                nil;
-            }
-
-            if ([buttonTitleArray[i] isEqualToString:@"剣山の掲示板"]) {
-                self.tsurugisanTourokuImage.hidden = NO;
-            }else{
-                nil;
-            }
+        }else{
+            nil;
+        }
+        if ([inRejon containsObject:@"眉山の掲示板"]) {
+            self.bizanTourokuImage.hidden = NO;
+        }else{
+            nil;
+        }
+        if ([inRejon containsObject:@"剣山の掲示板"]) {
+            self.tsurugisanTourokuImage.hidden = NO;
+        }else{
+            nil;
         }
     }
 }

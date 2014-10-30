@@ -75,12 +75,12 @@
     inRejon = [NSMutableArray array];
     
     // 200mの範囲円を追加
-    circleTokushimaeki = [MKCircle circleWithCenterCoordinate:coTokushimaeki radius: 200.0];
-    circleBizan = [MKCircle circleWithCenterCoordinate:coBizan radius: 200.0];
-    circleTsurugisan = [MKCircle circleWithCenterCoordinate:coTsurugisan radius: 200.0];
+    circleTokushimaeki = [MKCircle circleWithCenterCoordinate:coTokushimaeki radius: 2000.0];
+    circleBizan = [MKCircle circleWithCenterCoordinate:coBizan radius: 2000.0];
+    circleTsurugisan = [MKCircle circleWithCenterCoordinate:coTsurugisan radius: 2000.0];
     //[self getObject];
     //[self defaultMapSettei];
-    CLLocationDistance radiusOnMeter = 200.0;
+    CLLocationDistance radiusOnMeter = 2000.0;
     
     grRegionTokushimaeki = [[CLRegion alloc] initCircularRegionWithCenter:coTokushimaeki radius:radiusOnMeter identifier:@"徳島駅の掲示板"];
     [self.locationManager startMonitoringForRegion:grRegionTokushimaeki];

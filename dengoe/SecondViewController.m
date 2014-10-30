@@ -37,9 +37,9 @@
     rokuonStarting = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //self.tokushimaTourokuImage.hidden = YES;
-    //self.bizanTourokuImage.hidden = YES;
-    //self.tsurugisanTourokuImage.hidden = YES;
+    self.tokushimaTourokuImage.hidden = YES;
+    self.bizanTourokuImage.hidden = YES;
+    self.tsurugisanTourokuImage.hidden = YES;
     
     self.myTextField.delegate = self;
     self.labelONmike.hidden = NO;
@@ -58,7 +58,7 @@
     buttonTitleArray =
     [NSMutableArray arrayWithObjects:@"徳島の掲示板", @"眉山の掲示板", @"剣山の掲示板", nil];
     
-    //[self rokuonStartHidden];
+    [self rokuonStartHidden];
 }
 
 - (void)didReceiveMemoryWarning {

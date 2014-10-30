@@ -351,18 +351,27 @@
 -(void)rokuonStartHidden{
     //領域内のボタンが押された場合はWebViewに遷移
     for (int i = 0; i < inRejon.count; i++) {
-        NSLog(@"%@",[inRejon objectAtIndex:i]);
+        NSLog(@"%daaaaaa%@%@",(inRejon.count),[inRejon objectAtIndex:0],[inRejon objectAtIndex:1]);
     
-    if ([inRejon containsObject:buttonTitleArray[i]]) {
-        if ([buttonTitleArray[i] isEqualToString:@"徳島の掲示板"]) {
-            self.tokushimaTourokuImage.hidden = NO;
-        }else if ([buttonTitleArray[i] isEqualToString:@"眉山の掲示板"]) {
-            self.bizanTourokuImage.hidden = NO;
-        }else if ([buttonTitleArray[i] isEqualToString:@"剣山の掲示板"]) {
-            self.tsurugisanTourokuImage.hidden = NO;
+        if ([inRejon containsObject:buttonTitleArray[i]]) {
+            if ([buttonTitleArray[i] isEqualToString:@"徳島駅の掲示板"]) {
+                NSLog(@"aaaaa");
+                self.tokushimaTourokuImage.hidden = NO;
+            }else{
+                nil;
+            }
+            if ([buttonTitleArray[i] isEqualToString:@"眉山の掲示板"]) {
+                self.bizanTourokuImage.hidden = NO;
+            }else{
+                nil;
+            }
+
+            if ([buttonTitleArray[i] isEqualToString:@"剣山の掲示板"]) {
+                self.tsurugisanTourokuImage.hidden = NO;
+            }else{
+                nil;
+            }
         }
     }
-    }
-    
 }
 @end

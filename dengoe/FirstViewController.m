@@ -10,6 +10,8 @@
 #import "CustomAnnotation.h"
 #import "WebViewController.h"
 #import "AppDelegate.h"
+#import "bizanViewController.h"
+#import "tsurugisanViewController.h"
 
 @interface FirstViewController ()
 @end
@@ -155,10 +157,25 @@
     
     if ([inRejon containsObject:view.annotation.title]) {
         NSLog(@"入ってます");
-    //webViewに遷移
-    WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
-    [self presentViewController:webView animated:YES completion:nil];
+        if ([view.annotation.title isEqualToString:@"徳島駅の掲示板"]) {
+            //webViewに遷移
+            WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+            [self presentViewController:webView animated:YES completion:nil];
 
+        }else if ([view.annotation.title isEqualToString:@"眉山の掲示板"]) {
+            //webViewに遷移
+            bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
+            [self presentViewController:bizan_webView animated:YES completion:nil];
+            
+        }else if ([view.annotation.title isEqualToString:@"剣山の掲示板"]) {
+            //webViewに遷移
+            tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
+            [self presentViewController:tsurugisan_webView animated:YES completion:nil];
+            
+        }
+        
+        
+        
     //アノテーションの情報を取得
     NSLog(@"title: %@", view.annotation.title);
     NSLog(@"subtitle: %@", view.annotation.subtitle);

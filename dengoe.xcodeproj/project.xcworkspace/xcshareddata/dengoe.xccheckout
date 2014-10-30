@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F4F3C596-9819-42EA-B865-FF37BEDF81C2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>dengoe</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A9E0F9E78CCA6B6C8F020231E23006F2DB6C0B3B</key>
+		<string>https://github.com/bizancomSmartPhoneAppDeveloper2/DENGOE.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>dengoe.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A9E0F9E78CCA6B6C8F020231E23006F2DB6C0B3B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/bizancomSmartPhoneAppDeveloper2/DENGOE.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A9E0F9E78CCA6B6C8F020231E23006F2DB6C0B3B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A9E0F9E78CCA6B6C8F020231E23006F2DB6C0B3B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>dengoe</string>
+		</dict>
+	</array>
+</dict>
+</plist>

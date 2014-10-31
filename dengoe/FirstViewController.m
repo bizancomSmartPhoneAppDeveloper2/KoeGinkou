@@ -46,8 +46,6 @@
     MKCircle *circleTokushimaeki;
     MKCircle *circleBizan;
     MKCircle *circleTsurugisan;
-    NSString *defaultUserName;
-    NSString *defaultUserDate;
     MKCoordinateRegion regionMap;
     CLRegion *grRegionTokushimaeki;
     CLRegion *grRegionBizan;
@@ -60,8 +58,10 @@
 
 - (void)viewDidLoad {
     [self newAnnotation];
+
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
     latitude = 0;
     longitude = 0;
     [self.map setDelegate: self];
@@ -82,27 +82,14 @@
     //[self defaultMapSettei];
     CLLocationDistance radiusOnMeter = 2000.0;
     
-    grRegionTokushimaeki = [[CLRegion alloc] initCircularRegionWithCenter:coTokushimaeki radius:radiusOnMeter identifier:@"徳島駅の掲示板"];
+    grRegionTokushimaeki = [[CLRegion alloc] initCircularRegionWithCenter:coTokushimaeki radius:radiusOnMeter identifier:@"徳島城公園吟行地"];
     [self.locationManager startMonitoringForRegion:grRegionTokushimaeki];
     
-    grRegionBizan = [[CLRegion alloc] initCircularRegionWithCenter:coBizan radius:radiusOnMeter identifier:@"眉山の掲示板"];
+    grRegionBizan = [[CLRegion alloc] initCircularRegionWithCenter:coBizan radius:radiusOnMeter identifier:@"眉山吟行地"];
     [self.locationManager startMonitoringForRegion:grRegionBizan];
     
-    grRegionTsurugisan = [[CLRegion alloc] initCircularRegionWithCenter:coTsurugisan radius:radiusOnMeter identifier:@"剣山の掲示板"];
+    grRegionTsurugisan = [[CLRegion alloc] initCircularRegionWithCenter:coTsurugisan radius:radiusOnMeter identifier:@"文化の森吟行地"];
     [self.locationManager startMonitoringForRegion:grRegionTsurugisan];
-
-    
-    //ユーザが選択した都道府県があればそれをデフォルトとして表示する、保存されている都道府県を取り出してラベルに表示
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    defaultUserName = [defaults stringForKey:@"initialLetters"];
-
-    
-    //保存されているはずのユーザが選択した都道府県に対応する天気APIのURLを取り出す
-    NSUserDefaults *defaults_1 = [NSUserDefaults standardUserDefaults];
-    defaultUserDate = [defaults_1 stringForKey:@"initialLetters_1"];
-    NSLog(@"%@",defaultUserDate);
-
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,7 +108,7 @@
             //anotetionとpinを用いて値を代入
             av = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
             //表示する画像を設定
-            av.image = [UIImage imageNamed:@"design_img_f_1402687_s.png"];
+            av.image = [UIImage imageNamed:@"haiku2.png"];
             //ピンをクリックしたときに情報を表示するようにする
             av.canShowCallout = YES;
         }
@@ -157,17 +144,17 @@
     
     if ([inRejon containsObject:view.annotation.title]) {
         NSLog(@"入ってます");
-        if ([view.annotation.title isEqualToString:@"徳島駅の掲示板"]) {
+        if ([view.annotation.title isEqualToString:@"徳島城公園吟行地"]) {
             //webViewに遷移
             WebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
             [self presentViewController:webView animated:YES completion:nil];
 
-        }else if ([view.annotation.title isEqualToString:@"眉山の掲示板"]) {
+        }else if ([view.annotation.title isEqualToString:@"眉山吟行地"]) {
             //webViewに遷移
             bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
             [self presentViewController:bizan_webView animated:YES completion:nil];
             
-        }else if ([view.annotation.title isEqualToString:@"剣山の掲示板"]) {
+        }else if ([view.annotation.title isEqualToString:@"文化の森吟行地"]) {
             //webViewに遷移
             tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
             [self presentViewController:tsurugisan_webView animated:YES completion:nil];
@@ -299,7 +286,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
     
     //地図の縮尺を設定、coを中心に1000m四方で設定
-    self.map.region = MKCoordinateRegionMakeWithDistance(co, 100000, 100000);
+    self.map.region = MKCoordinateRegionMakeWithDistance(co, 10000, 10000);
     //区画内の建物表示プロパティ、初期値NO
     [self.map setShowsBuildings:YES];
     //コンビニなどランドマークの表示プロパティ、初期値NO
@@ -318,7 +305,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
     NSData *urldata = [NSData dataWithContentsOfURL:suburl];
     NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
-    NSLog(@"徳島%@",numstr);
+    NSLog(@"徳島城公園%@",numstr);
     number = [numstr intValue];
     
     NSInteger bizan_number;
@@ -332,7 +319,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
     NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
     NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
-    NSLog(@"剣山%@",tsurugisan_numstr);
+    NSLog(@"文化の森%@",tsurugisan_numstr);
     tsurugisan_number = [tsurugisan_numstr intValue];
     
     //緯度と経度情報を格納
@@ -340,26 +327,26 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     coBizan.longitude = 134.516636;
     //coを元にsampleannotetion型の変数を生成
     CustomAnnotation *annotetion = [[CustomAnnotation alloc]initwithCoordinate:coBizan];
-    annotetion.title = @"眉山の掲示板";
-    annotetion.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",bizan_number];
+    annotetion.title = @"眉山吟行地";
+    annotetion.subtitle = [NSString stringWithFormat:@"%d句あります",bizan_number];
     
     
     
         //緯度と経度情報を格納する変数の値を変更
-        coTokushimaeki.latitude = 34.074642;
-        coTokushimaeki.longitude = 134.550764;
+        coTokushimaeki.latitude = 34.076229;
+        coTokushimaeki.longitude = 134.556612;
         //coを元にannotetion型の2つめの変数を生成
         CustomAnnotation *annotetion2 = [[CustomAnnotation alloc]initwithCoordinate:coTokushimaeki];
-        annotetion2.title = @"徳島駅の掲示板";
-        annotetion2.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",number];
+        annotetion2.title = @"徳島城公園吟行地";
+        annotetion2.subtitle = [NSString stringWithFormat:@"%d句あります",number];
     
         //緯度と経度情報を格納する変数の値を変更
-        coTsurugisan.latitude = 33.854063;
-        coTsurugisan.longitude = 134.094674;
+        coTsurugisan.latitude = 34.044114;
+        coTsurugisan.longitude = 134.543109;
     //coを元にannotetion型の2つめの変数を生成
     CustomAnnotation *annotetion3 = [[CustomAnnotation alloc]initwithCoordinate:coTsurugisan];
-    annotetion3.title = @"剣山の掲示板";
-    annotetion3.subtitle = [NSString stringWithFormat:@"%d件の伝声があります",tsurugisan_number];
+    annotetion3.title = @"文化の森吟行地";
+    annotetion3.subtitle = [NSString stringWithFormat:@"%d句あります",tsurugisan_number];
     
         //2つアノテーションを追加
         [self.map addAnnotation:annotetion];
@@ -404,8 +391,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     switch (state) {
         case CLRegionStateInside:
             NSLog(@"%@は領域内です",region.identifier);
-            [[[UIAlertView alloc] initWithTitle:(@"%@掲示板",region.identifier)
-                                        message:@"掲示板への投稿と閲覧が可能です。"
+            [[[UIAlertView alloc] initWithTitle:(@"%@",region.identifier)
+                                        message:@"吟行地への投稿と閲覧が可能です。"
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles: nil]show];

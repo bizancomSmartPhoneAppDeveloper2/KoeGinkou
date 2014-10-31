@@ -10,6 +10,12 @@
 		070CF28419FF662E00DF34EA /* bizanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070CF28319FF662E00DF34EA /* bizanViewController.m */; };
 		070CF28719FF6AB300DF34EA /* tsurugisanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070CF28619FF6AB300DF34EA /* tsurugisanViewController.m */; };
 		073B67D519F896CD007FB05E /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 073B67D419F896CD007FB05E /* CustomAnnotation.m */; };
+		07780D561A032527007F9C4C /* 1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 07780D551A032527007F9C4C /* 1-1.png */; };
+		07780D581A0326CC007F9C4C /* 3-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 07780D571A0326CC007F9C4C /* 3-1.png */; };
+		07780D5A1A033134007F9C4C /* haiku2.png in Resources */ = {isa = PBXBuildFile; fileRef = 07780D591A033134007F9C4C /* haiku2.png */; };
+		07780D5C1A0331DB007F9C4C /* TOP.png in Resources */ = {isa = PBXBuildFile; fileRef = 07780D5B1A0331DB007F9C4C /* TOP.png */; };
+		07780D611A034394007F9C4C /* haikupost.png in Resources */ = {isa = PBXBuildFile; fileRef = 07780D601A034394007F9C4C /* haikupost.png */; };
+		07780D631A034BB5007F9C4C /* koeginkouTOP.png in Resources */ = {isa = PBXBuildFile; fileRef = 07780D621A034BB5007F9C4C /* koeginkouTOP.png */; };
 		07A5BF3119FBE51200C0FDD3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A5BF3019FBE51200C0FDD3 /* WebViewController.m */; };
 		07BED0DD19F5F1DC00BB7759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DC19F5F1DC00BB7759 /* main.m */; };
 		07BED0E019F5F1DC00BB7759 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BED0DF19F5F1DC00BB7759 /* AppDelegate.m */; };
@@ -33,6 +39,7 @@
 		07ECD38C19F6704100EF8EBB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD38B19F6704100EF8EBB /* SystemConfiguration.framework */; };
 		07ECD38E19F6704F00EF8EBB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECD38D19F6704F00EF8EBB /* MobileCoreServices.framework */; };
 		07ECD3A119F7566700EF8EBB /* hitsuji.png in Resources */ = {isa = PBXBuildFile; fileRef = 07ECD3A019F7566700EF8EBB /* hitsuji.png */; };
+		07FF6D0F1A0324C800F5FA1D /* haiku.png in Resources */ = {isa = PBXBuildFile; fileRef = 07FF6D0E1A0324C800F5FA1D /* haiku.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,12 @@
 		070CF28619FF6AB300DF34EA /* tsurugisanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tsurugisanViewController.m; sourceTree = "<group>"; };
 		073B67D319F896CD007FB05E /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotation.h; sourceTree = "<group>"; };
 		073B67D419F896CD007FB05E /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
+		07780D551A032527007F9C4C /* 1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-1.png"; sourceTree = "<group>"; };
+		07780D571A0326CC007F9C4C /* 3-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-1.png"; sourceTree = "<group>"; };
+		07780D591A033134007F9C4C /* haiku2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haiku2.png; sourceTree = "<group>"; };
+		07780D5B1A0331DB007F9C4C /* TOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOP.png; sourceTree = "<group>"; };
+		07780D601A034394007F9C4C /* haikupost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haikupost.png; sourceTree = "<group>"; };
+		07780D621A034BB5007F9C4C /* koeginkouTOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koeginkouTOP.png; sourceTree = "<group>"; };
 		07A5BF2F19FBE51200C0FDD3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		07A5BF3019FBE51200C0FDD3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		07BED0D719F5F1DC00BB7759 /* dengoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dengoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +96,7 @@
 		07ECD38B19F6704100EF8EBB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		07ECD38D19F6704F00EF8EBB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		07ECD3A019F7566700EF8EBB /* hitsuji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hitsuji.png; sourceTree = "<group>"; };
+		07FF6D0E1A0324C800F5FA1D /* haiku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haiku.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +179,13 @@
 		07BED0DA19F5F1DC00BB7759 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07780D621A034BB5007F9C4C /* koeginkouTOP.png */,
+				07780D601A034394007F9C4C /* haikupost.png */,
+				07780D5B1A0331DB007F9C4C /* TOP.png */,
+				07780D591A033134007F9C4C /* haiku2.png */,
+				07780D571A0326CC007F9C4C /* 3-1.png */,
+				07780D551A032527007F9C4C /* 1-1.png */,
+				07FF6D0E1A0324C800F5FA1D /* haiku.png */,
 				07CD82961A00C29400CBFD78 /* design_img_f_1402687_s.png */,
 				07ECD3A019F7566700EF8EBB /* hitsuji.png */,
 				07ECD38719F632A700EF8EBB /* denngonn .png */,
@@ -276,13 +297,20 @@
 			files = (
 				07BED0E919F5F1DC00BB7759 /* Main.storyboard in Resources */,
 				07CD82971A00C29400CBFD78 /* design_img_f_1402687_s.png in Resources */,
+				07780D631A034BB5007F9C4C /* koeginkouTOP.png in Resources */,
 				07ECD38619F6094900EF8EBB /* saisei.png in Resources */,
+				07780D581A0326CC007F9C4C /* 3-1.png in Resources */,
+				07780D611A034394007F9C4C /* haikupost.png in Resources */,
 				07ECD38219F5FE6700EF8EBB /* close_pink.gif in Resources */,
 				07ECD38819F632A700EF8EBB /* denngonn .png in Resources */,
 				07ECD38419F6052B00EF8EBB /* Mike.png in Resources */,
+				07FF6D0F1A0324C800F5FA1D /* haiku.png in Resources */,
+				07780D561A032527007F9C4C /* 1-1.png in Resources */,
+				07780D5C1A0331DB007F9C4C /* TOP.png in Resources */,
 				07BED0EE19F5F1DC00BB7759 /* LaunchScreen.xib in Resources */,
 				07ECD3A119F7566700EF8EBB /* hitsuji.png in Resources */,
 				07BED0EB19F5F1DC00BB7759 /* Images.xcassets in Resources */,
+				07780D5A1A033134007F9C4C /* haiku2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dengoe/SecondViewController.m"
-            timestampString = "436259704.889464"
+            timestampString = "436414046.946623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-rokuonStart:"
             landmarkType = "5">
          </BreakpointContent>

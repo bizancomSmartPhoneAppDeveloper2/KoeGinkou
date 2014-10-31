@@ -40,6 +40,7 @@
     self.tokushimaTourokuImage.hidden = YES;
     self.bizanTourokuImage.hidden = YES;
     self.tsurugisanTourokuImage.hidden = YES;
+    self.rokuonteisiLabel.hidden = YES;
     
     self.myTextField.delegate = self;
     self.labelONmike.hidden = NO;
@@ -56,7 +57,7 @@
     
     buttonTitleArray = [NSMutableArray array];
     buttonTitleArray =
-    [NSMutableArray arrayWithObjects:@"徳島の掲示板", @"眉山の掲示板", @"剣山の掲示板", nil];
+    [NSMutableArray arrayWithObjects:@"徳島城公園吟行地", @"眉山吟行地", @"文化の森吟行地", nil];
     
     [self rokuonStartHidden];
 }
@@ -70,6 +71,7 @@
     //録音状態でないかどうか
     if (rokuonStarting == NO) {
         self.labelONmike.hidden = YES;
+        self.rokuonteisiLabel.hidden = NO;
         self.rokuonStartStopImage.alpha = 1;
         audioSession = [AVAudioSession sharedInstance];
         NSError *error = nil;
@@ -121,10 +123,11 @@
     //録音状態であるかどうか
     else if(rokuonStarting == YES){
         self.labelONmike.hidden = NO;
+        self.rokuonteisiLabel.hidden = YES;
         self.rokuonStartStopImage.alpha = 0.3;
         
         [[[UIAlertView alloc] initWithTitle:@"完了"
-                                    message:@"正常に録音が完了しました。"
+                                    message:@"正常に句の録音が完了しました。"
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
@@ -169,7 +172,7 @@
         
     }else {
     
-        NSLog(@"眉山掲示板へ登録クリックされました");
+        NSLog(@"眉山吟行地へ登録クリックされました");
     
         NSURL *bizan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_sub_listen_dengoe.php"];
         NSData *bizan_urldata = [NSData dataWithContentsOfURL:bizan_suburl];
@@ -181,7 +184,7 @@
         [self update];
         
         [[[UIAlertView alloc] initWithTitle:@"完了"
-                                    message:@"正常にアップロードされました。"
+                                    message:@"正常に句が投稿されました。"
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
@@ -203,20 +206,20 @@
         
     }else {
     
-        NSLog(@"剣山掲示板へ登録クリックされました");
+        NSLog(@"文化の森吟行地へ登録クリックされました");
     
     
         NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
         NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
         NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
-        NSLog(@"剣山%@",tsurugisan_numstr);
+        NSLog(@"文化の森%@",tsurugisan_numstr);
         tsurugisan_number = [tsurugisan_numstr intValue];
         now_number = tsurugisan_number;
         updateURL = @"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php";
         [self update];
         
         [[[UIAlertView alloc] initWithTitle:@"完了"
-                                    message:@"正常にアップロードされました。"
+                                    message:@"正常に句が投稿されました。"
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
@@ -238,21 +241,21 @@
         
     }else {
     
-        NSLog(@"徳島掲示板へ登録クリックされました");
+        NSLog(@"徳島城公園吟行地へ登録クリックされました");
     
         NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
         NSData *urldata = [NSData dataWithContentsOfURL:suburl];
         NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
-        NSLog(@"番号%@",numstr);
+        NSLog(@"徳島城公園%@",numstr);
         number = [numstr intValue];
-        NSLog(@"徳島掲示板のテーブルのカウント数%d",number);
+        NSLog(@"徳島城公園吟行地のテーブルのカウント数%d",number);
 
         updateURL = @"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php";
         now_number = number;
         [self update];
     
         [[[UIAlertView alloc] initWithTitle:@"完了"
-                                    message:@"正常にアップロードされました。"
+                                    message:@"正常に句が投稿されました"
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
@@ -353,17 +356,17 @@
     for (int i = 0; i < inRejon.count; i++) {
         NSLog(@"%daaaaaa%@%@",(inRejon.count),[inRejon objectAtIndex:0],[inRejon objectAtIndex:1]);
     
-        if ([inRejon containsObject:@"徳島駅の掲示板"]) {
+        if ([inRejon containsObject:@"徳島城公園吟行地"]) {
                 self.tokushimaTourokuImage.hidden = NO;
         }else{
             nil;
         }
-        if ([inRejon containsObject:@"眉山の掲示板"]) {
+        if ([inRejon containsObject:@"眉山吟行地"]) {
             self.bizanTourokuImage.hidden = NO;
         }else{
             nil;
         }
-        if ([inRejon containsObject:@"剣山の掲示板"]) {
+        if ([inRejon containsObject:@"文化の森吟行地"]) {
             self.tsurugisanTourokuImage.hidden = NO;
         }else{
             nil;

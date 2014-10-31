@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--みんなの声-->
@@ -13,25 +13,26 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="10a-u0-yLz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="10a-u0-yLz"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sd4-bx-xZb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="みんなの声" image="first" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" id="gFG-Zb-DNJ"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="map" destination="10a-u0-yLz" id="dVK-24-N5N"/>
+                        <outlet property="map" destination="Sd4-bx-xZb" id="do3-fj-05o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="610.5" y="-557.5"/>
         </scene>
         <!--Bizan View Controller-->
         <scene sceneID="Rjs-yz-DNr">
@@ -42,15 +43,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fDH-fe-0gf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eoF-Ub-2a3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dx7-gd-hqd">
-                                <rect key="frame" x="0.0" y="28" width="320" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqM-rY-VcL">
-                                <rect key="frame" x="115" y="523" width="90" height="30"/>
+                                <rect key="frame" x="139" y="617" width="90" height="30"/>
                                 <state key="normal" title="アプリに戻る">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -58,18 +55,22 @@
                                     <segue destination="EbE-av-OoR" kind="unwind" unwindAction="goBackHome:" id="b5h-It-FZK"/>
                                 </connections>
                             </button>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-yl-nfo">
+                                <rect key="frame" x="16" y="28" width="344" height="575"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="webView" destination="dx7-gd-hqd" id="ofL-M3-blJ"/>
+                        <outlet property="webView" destination="rhx-yl-nfo" id="aJ6-xX-LxS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMs-xC-jp9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EbE-av-OoR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1023" y="-849"/>
+            <point key="canvasLocation" x="1023.5" y="-844.5"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="0d0-9e-MmY">
@@ -80,15 +81,11 @@
                         <viewControllerLayoutGuide type="bottom" id="PpU-jw-NdV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tMD-bC-LrV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeC-bl-ZZz">
-                                <rect key="frame" x="0.0" y="28" width="320" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZc-7m-Ogw">
-                                <rect key="frame" x="115" y="523" width="90" height="30"/>
+                                <rect key="frame" x="141" y="617" width="90" height="30"/>
                                 <state key="normal" title="アプリに戻る">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -96,18 +93,22 @@
                                     <segue destination="Pw4-O9-aGg" kind="unwind" unwindAction="goBackHome:" id="zgt-Ci-hjT"/>
                                 </connections>
                             </button>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gpK-on-MtA">
+                                <rect key="frame" x="10" y="28" width="354" height="573"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="webView" destination="eeC-bl-ZZz" id="hSv-op-muu"/>
+                        <outlet property="webView" destination="gpK-on-MtA" id="Lqd-ly-gIS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6s-IS-loy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Pw4-O9-aGg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1139" y="-300"/>
+            <point key="canvasLocation" x="1418.5" y="-322.5"/>
         </scene>
         <!--声を登録-->
         <scene sceneID="wg7-f3-ORb">
@@ -118,12 +119,12 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="rokuonView" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yQ-ma-fAy">
-                                <rect key="frame" x="66" y="0.0" width="202" height="225"/>
-                                <state key="normal" image="Mike.png">
+                                <rect key="frame" x="86" y="43" width="202" height="225"/>
+                                <state key="normal" image="1-1.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -131,34 +132,34 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登録文を入力してください" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1z-VZ-yMS">
-                                <rect key="frame" x="16" y="300" width="295" height="30"/>
+                                <rect key="frame" x="16" y="379" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <action selector="userName:" destination="8rJ-Kc-sve" eventType="editingDidEnd" id="sJ4-68-pgc"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aii-Tg-xoP">
-                                <rect key="frame" x="107" y="365" width="120" height="30"/>
-                                <state key="normal" title="眉山伝言板に登録">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aii-Tg-xoP">
+                                <rect key="frame" x="206" y="488" width="50" height="50"/>
+                                <state key="normal" image="haikupost.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="bizantourokuButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KCZ-6n-nwj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-Oi-AFZ">
-                                <rect key="frame" x="107" y="393" width="120" height="30"/>
-                                <state key="normal" title="剣山伝言板に登録">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-Oi-AFZ">
+                                <rect key="frame" x="206" y="549" width="50" height="50"/>
+                                <state key="normal" image="haikupost.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="tsurugisantourokuButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ZXE-hG-jAB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdK-h7-IzF">
-                                <rect key="frame" x="98" y="338" width="139" height="30"/>
-                                <state key="normal" title="徳島駅伝言板に登録">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdK-h7-IzF">
+                                <rect key="frame" x="206" y="425" width="50" height="50"/>
+                                <state key="normal" image="haikupost.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -166,7 +167,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMo-rK-Jzs">
-                                <rect key="frame" x="120" y="215" width="80" height="84"/>
+                                <rect key="frame" x="147" y="281" width="80" height="84"/>
                                 <state key="normal" image="saisei.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -174,29 +175,54 @@
                                     <action selector="rokuonListen:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KPh-lW-bhE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="クリックすると録音を開始します" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTj-KH-UOy">
-                                <rect key="frame" x="36" y="102" width="255" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="クリックすると句の録音を開始します" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTj-KH-UOy">
+                                <rect key="frame" x="43" y="150" width="289" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="もう一度クリックすると録音停止します" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-R3-7aX">
+                                <rect key="frame" x="34" y="150" width="306" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="徳島城公園吟行地" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsW-1M-Buc">
+                                <rect key="frame" x="62" y="439" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="眉山吟行地" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzf-Wl-vnb">
+                                <rect key="frame" x="62" y="502" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="文化の森吟行地" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYc-Zv-6dh">
+                                <rect key="frame" x="62" y="563" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="声を登録" image="second" id="cPa-gy-q4n"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bizanTourokuImage" destination="aii-Tg-xoP" id="2ZO-qB-paz"/>
                         <outlet property="labelONmike" destination="HTj-KH-UOy" id="FcL-Xt-nO5"/>
                         <outlet property="myTextField" destination="T1z-VZ-yMS" id="haC-JE-djP"/>
                         <outlet property="rokuonStartStopImage" destination="5yQ-ma-fAy" id="r6p-jF-fTB"/>
+                        <outlet property="rokuonteisiLabel" destination="Q3d-R3-7aX" id="IRb-5c-xTK"/>
                         <outlet property="tokushimaTourokuImage" destination="mdK-h7-IzF" id="vxS-Gw-YJS"/>
                         <outlet property="tsurugisanTourokuImage" destination="Rv1-Oi-AFZ" id="x6r-Jy-TgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="749.5" y="359.5"/>
         </scene>
         <!--Tsurugisan View Controller-->
         <scene sceneID="4Rb-Hf-UfE">
@@ -207,15 +233,15 @@
                         <viewControllerLayoutGuide type="bottom" id="VVe-2A-UWX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gPS-2C-h0f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ubu-9b-ehf">
-                                <rect key="frame" x="0.0" y="28" width="320" height="496"/>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbU-D5-OTU">
+                                <rect key="frame" x="8" y="36" width="358" height="581"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYm-eQ-krl">
-                                <rect key="frame" x="115" y="530" width="90" height="30"/>
+                                <rect key="frame" x="142" y="625" width="90" height="30"/>
                                 <state key="normal" title="アプリに戻る">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -226,15 +252,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="webView" destination="ubu-9b-ehf" id="dOt-Gi-uUF"/>
+                        <outlet property="webView" destination="IbU-D5-OTU" id="1jC-Eu-hCa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ga-cn-4sF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="AS1-gY-QHi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="397"/>
+            <point key="canvasLocation" x="1153.5" y="396.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -242,7 +268,7 @@
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="wXx-MR-K2x"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -259,8 +285,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Mike.png" width="102" height="175"/>
+        <image name="1-1.png" width="266" height="282"/>
         <image name="first" width="30" height="30"/>
+        <image name="haikupost.png" width="280" height="282"/>
         <image name="saisei.png" width="138" height="138"/>
         <image name="second" width="30" height="30"/>
     </resources>

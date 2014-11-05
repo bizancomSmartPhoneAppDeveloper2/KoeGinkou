@@ -17,10 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //文化の森の音声ファイルを置いているURL
     NSURL *tsurugisan_url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_listen_dengoe.php"];
     NSURLRequest *tsurugisan_request = [NSURLRequest requestWithURL:tsurugisan_url];
+    //文化の森のwebViewを表示
     [self.webView loadRequest:tsurugisan_request];
-
 }
 
 - (void)didReceiveMemoryWarning {

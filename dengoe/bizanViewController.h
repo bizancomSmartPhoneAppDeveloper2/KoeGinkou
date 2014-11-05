@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+//このクラスはbizanViewControllerが表示される時に実行されます
 
 @interface bizanViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

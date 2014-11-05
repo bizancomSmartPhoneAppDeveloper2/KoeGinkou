@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+//このクラスはtsurugisanViewControllerが表示される時に実行されます
 
 @interface tsurugisanViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

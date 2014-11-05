@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-
+//このクラスはWebViewControllerが表示される時に実行されます
 
 @interface WebViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

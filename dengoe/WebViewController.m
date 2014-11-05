@@ -17,9 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //眉山の音声ファイルを置いているURL
     NSURL *url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
+    //眉山のwebViewを表示
     [self.webView loadRequest:request];
 }
 

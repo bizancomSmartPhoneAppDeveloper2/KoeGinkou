@@ -17,11 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //眉山の音声ファイルを置いているURL
     NSURL *bizan_url = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_listen_dengoe.php"];
     NSURLRequest *bizan_request = [NSURLRequest requestWithURL:bizan_url];
+    //眉山のwebViewを表示
     [self.webView loadRequest:bizan_request];
-
-
 }
 
 - (void)didReceiveMemoryWarning {

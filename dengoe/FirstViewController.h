@@ -18,7 +18,7 @@
 
 
 @interface FirstViewController : UIViewController<CLLocationManagerDelegate,MKAnnotation,MKMapViewDelegate>
-
+//現在位置を管理するための変数
 @property CLLocationManager *locationManager;
 //緯度、経度の情報を格納するための変数
 @property(nonatomic)CLLocationCoordinate2D coordinate;

@@ -16,49 +16,51 @@
 @end
 
 @implementation SecondViewController{
-    AVAudioRecorder *avRecorder;
-    AVAudioSession *audioSession;
-    AVAudioPlayer *avPlayer;
-    BOOL rokuonStarting;
-    NSInteger number;
-    NSString *userNameString;
-    NSString *filename;
-    NSString *path;
+    AVAudioRecorder *avRecorder;//録音のために必要
+    AVAudioSession *audioSession;//録音のために必要
+    AVAudioPlayer *avPlayer;//音声再生のために必要
+    BOOL rokuonStarting;//録音しているかどうか（yesかnoで返ってくる）
+    NSInteger number;//サーバの徳島城公園のデータベースにすでにある音声データの数
+    NSInteger bizan_number;//サーバの眉山のデータベースにすでにある音声データの数
+    NSInteger tsurugisan_number;//サーバの文化の森のデータベースにすでにある音声データの数
+    NSInteger now_number;//新しくサーバに保存する音声データの番号
+    NSString *userNameString;//登録文
+    NSString *filename;//ファイルの名前
+    NSString *path;//サーバと通信する際に使うパス
     NSString *updateURL;
-    NSInteger tsurugisan_number;
-    NSInteger bizan_number;
-    NSInteger now_number;
-    NSMutableArray *inRejon;
-    NSMutableArray *buttonTitleArray;
+    NSMutableArray *inRejon;//領域内に入っている吟行所の配列
+    NSMutableArray *buttonTitleArray;//サーバに送信するための３つのボタンを配列として入れておく
 }
 
 
 - (void)viewDidLoad {
-    rokuonStarting = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    rokuonStarting = NO;//初期化
+    //サーバ登録するボタンを初期化（いったん非表示にしておく）
     self.tokushimaTourokuImage.hidden = YES;
     self.bizanTourokuImage.hidden = YES;
     self.tsurugisanTourokuImage.hidden = YES;
     self.rokuonteisiLabel.hidden = YES;
-    
-    self.myTextField.delegate = self;
+    //マイク上の押すと録音しますというラベルは表示しておく
     self.labelONmike.hidden = NO;
-    number = 0;
     
-    //配列を空で生成
+    self.myTextField.delegate = self;//テキストフィールドのデリゲートを今回はselfにする。
+    number = 0;
+    //配列を空で生成（初期化）
     inRejon = [NSMutableArray array];
     
     //デリゲートに保存したを取得する
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate]; // デリゲート呼び出し
-    //imageviewの画像をimageに設定
+    //didRejonをinRejonに設定
     inRejon = appDelegate.didRejon;
     
-    
+    //配列を空で生成（初期化）
     buttonTitleArray = [NSMutableArray array];
+    //配列に要素を代入しておく
     buttonTitleArray =
     [NSMutableArray arrayWithObjects:@"徳島城公園吟行地", @"眉山吟行地", @"文化の森吟行地", nil];
-    
+    //下方にあるrokuonStartHiddenを実行
     [self rokuonStartHidden];
 }
 
@@ -67,18 +69,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+//マイクボタンをクリックされるとこのメソッドが呼ばれる
 - (IBAction)rokuonStart:(UIButton *)sender {
     //録音状態でないかどうか
+    //もし録音中でないならば
     if (rokuonStarting == NO) {
+        //押すと録音しますラベルは隠して、押すと停止しますボタンは表示させる
         self.labelONmike.hidden = YES;
         self.rokuonteisiLabel.hidden = NO;
+        //録音中はマイク画像の透明度をなくす
         self.rokuonStartStopImage.alpha = 1;
+        //AVAudioSessionを使えるように準備
         audioSession = [AVAudioSession sharedInstance];
         NSError *error = nil;
         // 使用している機種が録音に対応しているか
+        //対応しているなら使えるよう準備
         if ([audioSession inputIsAvailable]) {
             [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
         }
+        //対応していないならログにエラーを表示
         if(error){
             NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
         }
@@ -87,10 +96,8 @@
         if(error){
             NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
         }
-        
         // 録音ファイルパス
-        NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                 NSUserDomainMask,YES);
+        NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *documentDir = [filePaths objectAtIndex:0];
         //wavファイルとして保存する
         NSString *path = [documentDir stringByAppendingPathComponent:@"rec.wav"];
@@ -105,7 +112,7 @@
                AVEncoderBitRateKey,
                [NSNumber numberWithInt: 1],
                AVNumberOfChannelsKey,
-               [NSNumber numberWithFloat:500.0],
+               [NSNumber numberWithFloat:100.0],
                AVSampleRateKey,
                nil];
         avRecorder = [[AVAudioRecorder alloc] initWithURL:recordingURL settings:dic error:&error];
@@ -131,8 +138,8 @@
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
-
-
+        
+        
         //録音をやめる
         [avRecorder stop];
         rokuonStarting = NO;
@@ -171,9 +178,9 @@
                           otherButtonTitles: nil]show];
         
     }else {
-    
+        
         NSLog(@"眉山吟行地へ登録クリックされました");
-    
+        
         NSURL *bizan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/bizan_sub_listen_dengoe.php"];
         NSData *bizan_urldata = [NSData dataWithContentsOfURL:bizan_suburl];
         NSString *bizan_numstr = [[NSString alloc]initWithData:bizan_urldata encoding:NSUTF8StringEncoding];
@@ -188,8 +195,8 @@
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
-
-    
+        
+        
         //webViewに遷移
         bizanViewController *bizan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"bizanWebView"];
         [self presentViewController:bizan_webView animated:YES completion:nil];
@@ -205,10 +212,10 @@
                           otherButtonTitles: nil]show];
         
     }else {
-    
+        
         NSLog(@"文化の森吟行地へ登録クリックされました");
-    
-    
+        
+        
         NSURL *tsurugisan_suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/tsurugisan_sub_listen_dengoe.php"];
         NSData *tsurugisan_urldata = [NSData dataWithContentsOfURL:tsurugisan_suburl];
         NSString *tsurugisan_numstr = [[NSString alloc]initWithData:tsurugisan_urldata encoding:NSUTF8StringEncoding];
@@ -223,8 +230,8 @@
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles: nil]show];
-
-
+        
+        
         //webViewに遷移
         tsurugisanViewController *tsurugisan_webView = [self.storyboard instantiateViewControllerWithIdentifier:@"tsurugisanWebView"];
         [self presentViewController:tsurugisan_webView animated:YES completion:nil];
@@ -240,20 +247,20 @@
                           otherButtonTitles: nil]show];
         
     }else {
-    
+        
         NSLog(@"徳島城公園吟行地へ登録クリックされました");
-    
+        
         NSURL *suburl = [NSURL URLWithString:@"http://sayaka-sawada.main.jp/keijiban/sub_listen_dengoe.php"];
         NSData *urldata = [NSData dataWithContentsOfURL:suburl];
         NSString *numstr = [[NSString alloc]initWithData:urldata encoding:NSUTF8StringEncoding];
         NSLog(@"徳島城公園%@",numstr);
         number = [numstr intValue];
         NSLog(@"徳島城公園吟行地のテーブルのカウント数%d",number);
-
+        
         updateURL = @"http://sayaka-sawada.main.jp/keijiban/listen_dengoe.php";
         now_number = number;
         [self update];
-    
+        
         [[[UIAlertView alloc] initWithTitle:@"完了"
                                     message:@"正常に句が投稿されました"
                                    delegate:nil
@@ -277,9 +284,9 @@
     NSLog(@"%@",userNameString);
     return NO;
 }
-    
 
-    
+
+
 -(void)update{
     
     //パスからデータを取得
@@ -355,9 +362,9 @@
     //領域内のボタンが押された場合はWebViewに遷移
     for (int i = 0; i < inRejon.count; i++) {
         NSLog(@"%daaaaaa%@%@",(inRejon.count),[inRejon objectAtIndex:0],[inRejon objectAtIndex:1]);
-    
+        
         if ([inRejon containsObject:@"徳島城公園吟行地"]) {
-                self.tokushimaTourokuImage.hidden = NO;
+            self.tokushimaTourokuImage.hidden = NO;
         }else{
             nil;
         }
